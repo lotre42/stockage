@@ -6,7 +6,7 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:35:06 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/24 05:38:13 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/05/25 02:49:40 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	or(t_stock *info, int pc)
 	int *tabvalue;
 
 	tabtype = ft_downtype(info, pc);
-	tabvalue = ft_downvalue(info, tabtype, pc);
+	tabvalue = ft_downvalue(info, tabtype, pc, 0);
 	ordi(info, pc, tabtype, tabvalue);
 	if (info->registre[tabvalue[2]] == 0)
 		info->carry = 1;

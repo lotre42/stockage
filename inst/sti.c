@@ -6,16 +6,36 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 23:55:08 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/22 23:57:34 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/05/25 08:32:57 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/corewar.h"
+#include "../includes/corewar.h"
 
-void	sti(int r1, int i, int x, t_stock *info)
+void	sti(t_stock *info, int pc)
 {
-	int S;
+	int *tabtype;
+	int *tabvalue;
 
-	S = r1 & 0x00ff;
-	info->ram[i + x] = S;
+	tabtype = ft_downtype(info, pc);
+	tabvalue = ft_downvalue(info, tabtype, pc, 1);
+	if (tabtype[2] == 1 && tabtype[3] == 1)
+	{
+		*(unsigned int*)((void *)((info->ram + info->registre[tabvalue[1]] + info->registre[tabvalue[2]]))) 
+				= info->registre[tabvalue[0]]; 
+	}
+	else if (tabtype[2] == 1 && (tabtype[3] == 2 || tabtype[3] == 3))
+	{
+		*(unsigned int*)((void *)((info->ram + info->registre[tabvalue[1] + tabvalue[2]]))) 
+		= info->registre[tabvalue[0]]; 
+	}
+	else if (tabtype[3] == 1 && (tabtype[2] == 2 || tabtype[2] == 3))
+	{
+		*(unsigned int*)((void *)((info->ram + info->registre[tabvalue[2]] + tabvalue[1])))
+		   	= info->registre[tabvalue[0]]; 
+	}
+	else
+	{
+		*(unsigned int*)((void *)((info->ram + tabvalue[1] + tabvalue[2]))) = info->registre[tabvalue[0]]; 
+	}
 }

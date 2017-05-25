@@ -6,19 +6,19 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:31:17 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/24 05:54:05 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/05/25 02:51:22 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/corewar.h"
 
-void	add(t_stock *info, int pc)
+void	sub(t_stock *info, int pc)
 {
 	int *tabtype;
 	int *tabvalue;
 
 	tabtype = ft_downtype(info, pc);
-	tabvalue = ft_downvalue(info, tabtype, pc);
+	tabvalue = ft_downvalue(info, tabtype, pc, 0);
 	info->registre[tabvalue[2]] = info->registre[tabvalue[0]] -
 	   	info->registre[tabvalue[1]];
 	if (info->registre[tabvalue[2]] == 0)
