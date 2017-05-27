@@ -6,7 +6,7 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 22:23:16 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/25 06:06:27 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/05/25 09:27:26 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define COREWAR_H
 
 # include <stdlib.h>
+# include <stdio.h>
 # include <unistd.h>
 # include "../libft/includes/libft.h"
 
