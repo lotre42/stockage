@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   and.c                                              :+:      :+:    :+:   */
+/*   ft_and.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:32:26 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/25 02:48:58 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/05/27 16:30:54 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/corewar"
+#include "../includes/corewar.h"
 
 static void addid(t_stock *info, int pc, int *tabtype, int *tabvalue)
 {
@@ -90,7 +90,7 @@ static void adddi(t_stock *info, int pc, int *tabtype, int *tabvalue)
 	else
 		addr(info, pc, tabtype, tabvalue);	
 }
-void	add(t_stock *info, int pc)
+void	ft_and(t_stock *info, int pc)
 {
 	int *tabtype;
 	int *tabvalue;
