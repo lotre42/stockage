@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   opencor.c                                          :+:      :+:    :+:   */
+/*   addlist.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/27 16:43:25 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/29 06:32:54 by kahantar         ###   ########.fr       */
+/*   Created: 2017/05/29 06:35:04 by kahantar          #+#    #+#             */
+/*   Updated: 2017/05/29 06:47:15 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
 #include "../includes/corewar.h"
 
-void	opencor(char *argv, t_player *player)
+int		addlist(char *argv, t_player **add)
 {
-	int fd;
-	int res;
-	int i;
-	int y;
-	char buf[1025];
+	t_player *new;
+	t_player *tmp;
 
-	i = 0;
-	y = 0;
-	fd = open(argv, O_RDONLY);
-	while ((res = read(fd, buf, 1024)))
-		i = i + res;
-	close(fd);
-	player->totalplayer = malloc(sizeof(char) * i);
-	fd = open(argv, O_RDONLY);
-	res = read(fd, player->totalplayer, i);
-	player->sizetotal = i;
-	close(fd);
+	if (!(new = malloc(sizeof(t_player))))
+		return (0);
+	opencor(argv, new);
+	infoplayer(new);
+	ft_putnbr(new->sizeplayer);
+	tmp = *add;
+	if (!tmp)
+		*add = new;
+	else
+	{
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = new;
+	}
+	return (0);
 }

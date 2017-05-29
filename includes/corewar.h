@@ -6,7 +6,7 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 22:23:16 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/27 19:36:44 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/05/29 07:03:39 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,13 @@ typedef struct			s_stock
 typedef struct			s_player
 {
 	char				*totalplayer;
-	char 				*infoplayer;
+	char 				*magicplayer;
+	char				*nameplayer;
+	char				*comentplayer;
 	char				*instplayer;
 	int					sizeplayer;
+	int					sizetotal;
+	struct s_player		*next;
 }						t_player;
 
 void					ld(t_stock *info, int pc);
@@ -51,6 +55,7 @@ void					sub(t_stock *info, int pc);
 void					xor(t_stock *info, int pc);
 void					zjump(t_stock *info, int pc);
 void					opencor(char *argv, t_player *player);
-void					infoplayer(t_player *player);
+int						infoplayer(t_player *player);
+int						addlist(char *argv, t_player **add);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 22:40:55 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/27 19:30:57 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/05/29 07:05:53 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ int main(int argc, char **argv)
 	t_stock info;
 	int r;
 	int pc;
-	t_player player1;
+	int i;
+	i = 1;
+	t_player *player;
+	player = NULL;
 /*	pc = 0;
 	r = 0;
 	info.registre = (unsigned int*)ft_inittab(16);
@@ -53,9 +56,11 @@ int main(int argc, char **argv)
 	info.ram[26] = 0x00;
 	info.carry = 0;
 	*/
-	(void)argc;
-	opencor(argv[1], &player1);
-	infoplayer(&player1);
+	while (i < argc)
+	{
+	addlist(argv[i], &player);
+		i++;
+	}
 	//printf("%d", info.registre[3]);
 //	while (r < 26)
 //	{
