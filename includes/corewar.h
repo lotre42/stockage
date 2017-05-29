@@ -6,7 +6,7 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 22:23:16 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/29 07:03:39 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/05/29 09:34:38 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,6 @@ void					zjump(t_stock *info, int pc);
 void					opencor(char *argv, t_player *player);
 int						infoplayer(t_player *player);
 int						addlist(char *argv, t_player **add);
+char					*createram(t_player *player, int nb);
 
 #endif

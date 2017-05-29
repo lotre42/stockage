@@ -6,7 +6,7 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/27 17:33:21 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/29 07:17:02 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/05/29 08:44:39 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,25 +47,25 @@ int			infoplayer(t_player *player)
 
 	if (player->sizetotal < 2191)
 		return (0);
-	//player->magicplayer = ft_strnew(4);
-	//player->magicplayer = ft_memcpy(player->magicplayer, player->totalplayer, 4);
+	player->magicplayer = ft_strnew(4);
+	player->magicplayer = ft_memcpy(player->magicplayer, player->totalplayer, 4);
 	i = 4;
-//	//player->nameplayer = createbuf(player->totalplayer, i , 128);
+	player->nameplayer = createbuf(player->totalplayer, i , 128);
 	i = i + 128;
-//	if (!verifnull(player->totalplayer, i))
-//		return (0);
+	if (!verifnull(player->totalplayer, i))
+		return (0);
 	i = i + 4;
-	player->sizeplayer = player->totalplayer[i] << 24 |
-	   	player->totalplayer[i + 1] << 16
-	   	| player->totalplayer[i + 2] << 8 | player->totalplayer[i + 3];
-//	i = i + 4;
-//	player->comentplayer = createbuf(player->totalplayer, i, 2048);
-//	i = i + 2048;
-//	if (!verifnull(player->totalplayer, i))
-//		return (0);
-//	i = i + 4;
-//	if (player->sizetotal < i + player->sizeplayer)
-//		return (0);
-//	player->instplayer = createbuf(player->totalplayer, i, player->sizeplayer);
+	player->sizeplayer = ((player->totalplayer[i] << 24) & 0xff000000) |
+	   	((player->totalplayer[i + 1] << 16) & 0x00ff0000)
+	   	| ((player->totalplayer[i + 2] << 8) & 0x0000ff00) | (player->totalplayer[i + 3] & 0x000000ff);
+	i = i + 4;
+	player->comentplayer = createbuf(player->totalplayer, i, 2048);
+	i = i + 2048;
+	if (!verifnull(player->totalplayer, i))
+		return (0);
+	i = i + 4;
+	if (player->sizetotal < i + player->sizeplayer)
+		return (0);
+	player->instplayer = createbuf(player->totalplayer, i, player->sizeplayer);
 	return (1);
 }

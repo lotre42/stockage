@@ -6,7 +6,7 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 22:40:55 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/29 07:05:53 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/05/29 08:54:11 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int main(int argc, char **argv)
 	addlist(argv[i], &player);
 		i++;
 	}
+	createram(player, argc - 1);
 	//printf("%d", info.registre[3]);
 //	while (r < 26)
 //	{
