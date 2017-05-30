@@ -6,7 +6,7 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 22:40:55 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/29 08:54:11 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/05/30 09:04:07 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ int main(int argc, char **argv)
 	int r;
 	int pc;
 	int i;
+	char *ram;
 	i = 1;
 	t_player *player;
+	t_player *tmp;
 	player = NULL;
 /*	pc = 0;
 	r = 0;
@@ -61,7 +63,9 @@ int main(int argc, char **argv)
 	addlist(argv[i], &player);
 		i++;
 	}
-	createram(player, argc - 1);
+	ram = createram(player, argc - 1);
+	ft_initplayer(player, ram);
+	ft_core(player, ram);
 	//printf("%d", info.registre[3]);
 //	while (r < 26)
 //	{

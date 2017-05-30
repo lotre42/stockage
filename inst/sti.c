@@ -6,19 +6,19 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 23:55:08 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/27 13:46:18 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/05/30 05:06:25 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/corewar.h"
 
-void	sti(t_stock *info, int pc)
+void	sti(t_stock *info)
 {
 	int *tabtype;
 	int *tabvalue;
 
-	tabtype = ft_downtype(info, pc);
-	tabvalue = ft_downvalue(info, tabtype, pc, 1);
+	tabtype = ft_downtype(info);
+	tabvalue = ft_downvalue(info, tabtype, 1);
 	if (tabtype[2] == 1 && tabtype[3] == 1)
 	{
 		*(unsigned int*)((void *)((info->ram + info->registre[tabvalue[1]] + info->registre[tabvalue[2]]))) 

@@ -1,35 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   opencor.c                                          :+:      :+:    :+:   */
+/*   ft_initplayer.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/27 16:43:25 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/30 02:32:02 by kahantar         ###   ########.fr       */
+/*   Created: 2017/05/30 05:31:07 by kahantar          #+#    #+#             */
+/*   Updated: 2017/05/30 09:02:41 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
 #include "../includes/corewar.h"
 
-void	opencor(char *argv, t_player *player)
+static int	countplayer(t_player *player)
 {
-	int fd;
-	int res;
 	int i;
-	int y;
-	char buf[1025];
 
 	i = 0;
-	y = 0;
-	fd = open(argv, O_RDONLY);
-	while ((res = read(fd, buf, 1024)))
-		i = i + res;
-	close(fd);
-	player->totalplayer = malloc(sizeof(char) * i);
-	fd = open(argv, O_RDONLY);
-	res = read(fd, player->totalplayer, i);
-	player->sizetotal = i;
-	close(fd);
+	while (player)
+	{
+		player = player->next;
+		i++;
+	}
+	return (i);
+}
+
+void		ft_initplayer(t_player *player, char *ram)
+{
+	int i;
+	int x;
+	int pc;
+
+	i = 0;
+	x = countplayer(player);
+	pc = 4096 / x;
+	while (player)
+	{
+		player->stok = malloc(sizeof(t_stock));
+		player->stok->ram = ram;
+		player->stok->carry = 0;
+		player->stok->registre = ft_inittab(16);
+		player->stok->pc = pc * i;
+		i++;
+		player = player->next;
+	}
 }

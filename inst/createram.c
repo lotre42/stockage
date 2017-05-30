@@ -6,7 +6,7 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/29 08:54:26 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/29 09:36:07 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/05/30 08:57:23 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,12 @@ char		*createram(t_player *player, int nb)
 	nb--;
 	while (nb > 0)
 	{
+		player = player->next;
 		cpyinram(ram, player, x * i);
 		i++;
 		nb--;
-		player = player->next;
 	}
-	while (i < 4096)
-	{
-		printf("%hhx", ram[i]);
-		i++;
-	}
+	i = 0;
+	x = 0;
 	return (ram);
 }

@@ -6,7 +6,7 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/23 23:39:26 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/25 09:17:22 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/05/30 08:11:10 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,20 @@ static int	*ft_numberofparam(int ocp)
 	return (tabparam);
 }
 
-int			*ft_downtype(t_stock *info, int pc)
+int			*ft_downtype(t_stock *info)
 {
 	int *tabparam;
 	int i;
 
-	if (info->ram[pc] == 0x01 || info->ram[pc] == 0x09 ||
-		   	info->ram[pc] == 0x0c || info->ram[pc] == 0x0f)
+	if (info->ram[info->pc] == 0x01 || info->ram[info->pc] == 0x09 ||
+		   	info->ram[info->pc] == 0x0c || info->ram[info->pc] == 0x0f)
 	{
 		tabparam = ft_inittab(2);
 		tabparam[0] = 1;
 		tabparam[1] = 2;
 	}
 	else
-		tabparam = ft_numberofparam(info->ram[pc + 1]);
+		tabparam = ft_numberofparam(info->ram[info->pc + 1]);
 	i = 1;
 	return (tabparam);
 }

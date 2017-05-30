@@ -6,19 +6,19 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 01:30:18 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/27 13:43:57 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/05/30 08:12:58 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/corewar.h"
 
-int		*ft_downvalue(t_stock *info, int *tabtype, int pc, int x)
+int		*ft_downvalue(t_stock *info, int *tabtype, int x)
 {
 	int *tabvalue;
 	int index;
 	int i;
 
-	index = pc + 2;
+	index = info->pc + 2;
 	i = 1;
 	tabvalue = ft_inittab(tabtype[0]);
 	while (i - 1 < tabtype[0])
