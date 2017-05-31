@@ -6,7 +6,7 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 22:40:55 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/30 09:04:07 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/05/31 20:22:23 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int main(int argc, char **argv)
 	i = 1;
 	t_player *player;
 	t_player *tmp;
-	player = NULL;
 /*	pc = 0;
 	r = 0;
 	info.registre = (unsigned int*)ft_inittab(16);
@@ -58,20 +57,16 @@ int main(int argc, char **argv)
 	info.ram[26] = 0x00;
 	info.carry = 0;
 	*/
+	player = NULL;
 	while (i < argc)
 	{
-	addlist(argv[i], &player);
+		addlist(argv[i], &player);
 		i++;
 	}
 	ram = createram(player, argc - 1);
 	ft_initplayer(player, ram);
 	ft_core(player, ram);
-	//printf("%d", info.registre[3]);
-//	while (r < 26)
-//	{
-//		printf("%hhx\n", info.ram[r]);
-//		r++;
-//	}
+//	printf("%d", info.registre[3]);
 	return (0);
 }
 

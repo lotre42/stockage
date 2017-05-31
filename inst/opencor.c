@@ -6,7 +6,7 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/27 16:43:25 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/30 02:32:02 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/05/31 19:55:01 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ void	opencor(char *argv, t_player *player)
 
 	i = 0;
 	y = 0;
+	close(fd);
 	fd = open(argv, O_RDONLY);
 	while ((res = read(fd, buf, 1024)))
 		i = i + res;
-	close(fd);
-	player->totalplayer = malloc(sizeof(char) * i);
+	player->totalplayer = (char*)malloc(sizeof(char) * i);
 	fd = open(argv, O_RDONLY);
 	res = read(fd, player->totalplayer, i);
 	player->sizetotal = i;

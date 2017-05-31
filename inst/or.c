@@ -6,7 +6,7 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:35:06 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/30 08:43:44 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/06/01 01:06:11 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static void orid(t_stock *info, int *tabtype, int *tabvalue)
 			info->registre[tabvalue[2]] = 1;
 		else
 			info->registre[tabvalue[2]] = 0;
+		info->pc = pluspc(info->pc, 6);
 	}
 	else if (tabtype[1] == 3 && tabtype[2] == 1)
 	{
@@ -27,6 +28,7 @@ static void orid(t_stock *info, int *tabtype, int *tabvalue)
 			info->registre[tabvalue[2]] = 1;
 		else
 			info->registre[tabvalue[2]] = 0;
+		info->pc = pluspc(info->pc, 5);
 	}
 	else if (tabtype[1] == 3 && tabtype[2] == 2)
 	{
@@ -34,6 +36,7 @@ static void orid(t_stock *info, int *tabtype, int *tabvalue)
 			info->registre[tabvalue[2]] = 1;
 		else
 			info->registre[tabvalue[2]] = 0;
+		info->pc = pluspc(info->pc, 8);
 	}
 }
 
@@ -45,6 +48,7 @@ static void orr(t_stock *info, int *tabtype, int *tabvalue)
 			info->registre[tabvalue[2]] = 1;
 		else
 			info->registre[tabvalue[2]] = 0;
+		info->pc = pluspc(info->pc, 4);
 	}	
 	else if (tabtype[1] == 1 && tabtype[2] == 2)
 	{
@@ -52,6 +56,7 @@ static void orr(t_stock *info, int *tabtype, int *tabvalue)
 			info->registre[tabvalue[2]] = 1;
 		else
 			info->registre[tabvalue[2]] = 0;
+		info->pc = pluspc(info->pc, 5);
 	}	
 	else if (tabtype[1] == 1 && tabtype[2] == 3)
 	{
@@ -59,6 +64,7 @@ static void orr(t_stock *info, int *tabtype, int *tabvalue)
 			info->registre[tabvalue[2]] = 1;
 		else
 			info->registre[tabvalue[2]] = 0;
+		info->pc = pluspc(info->pc, 7);
 	}
 	else
 		orid(info, tabtype, tabvalue);	
@@ -72,6 +78,7 @@ static void ordi(t_stock *info, int *tabtype, int *tabvalue)
 			info->registre[tabvalue[2]] = 1;
 		else
 			info->registre[tabvalue[2]] = 0;
+		info->pc = pluspc(info->pc, 10);
 	}	
 	else if (tabtype[1] == 2 && tabtype[2] == 1)
 	{
@@ -79,6 +86,7 @@ static void ordi(t_stock *info, int *tabtype, int *tabvalue)
 			info->registre[tabvalue[2]] = 1;
 		else
 			info->registre[tabvalue[2]] = 0;
+		info->pc = pluspc(info->pc, 5);
 	}	
 	else if (tabtype[1] == 2 && tabtype[2] == 3)
 	{
@@ -86,6 +94,7 @@ static void ordi(t_stock *info, int *tabtype, int *tabvalue)
 			info->registre[tabvalue[2]] = 1;
 		else
 			info->registre[tabvalue[2]] = 0;
+		info->pc = pluspc(info->pc, 8);
 	}
 	else
 		orr(info, tabtype, tabvalue);	

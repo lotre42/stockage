@@ -1,29 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_inittab.c                                       :+:      :+:    :+:   */
+/*   pluspc.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/23 23:21:34 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/31 16:29:29 by kahantar         ###   ########.fr       */
+/*   Created: 2017/06/01 00:48:25 by kahantar          #+#    #+#             */
+/*   Updated: 2017/06/01 01:19:35 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/corewar.h"
 
-int *ft_inittab(int x)
+int		pluspc(int pc, int i)
 {
-	int *tab;
-	int i;
+	int nb;
+	int cpypc;
 
-	i = 0;
-	if (!(tab = (int*)malloc(sizeof(int) * x)))
-		return (0);
-	while (i < x)
+	nb = 0;
+	cpypc = pc;
+	if (i > 0)
 	{
-		tab[i] = 0;
-		i++;
+		while (nb < i)
+		{
+			if (cpypc >= 4095)
+				cpypc = 0;
+			cpypc++;
+			nb++;
+		}
 	}
-	return (tab);
+	else
+	{
+		while (nb > i)
+		{
+			if (cpypc <= 0)
+				cpypc = 4095;
+			cpypc--;
+			nb--;
+		}
+	}
+	return (cpypc);
 }

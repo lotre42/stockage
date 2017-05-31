@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_inittab.c                                       :+:      :+:    :+:   */
+/*   nbplayer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/23 23:21:34 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/31 16:29:29 by kahantar         ###   ########.fr       */
+/*   Created: 2017/06/01 00:12:53 by kahantar          #+#    #+#             */
+/*   Updated: 2017/06/01 00:24:42 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/corewar.h"
 
-int *ft_inittab(int x)
+int		nbplayer(t_player *player)
 {
-	int *tab;
 	int i;
 
 	i = 0;
-	if (!(tab = (int*)malloc(sizeof(int) * x)))
-		return (0);
-	while (i < x)
+	while (player)
 	{
-		tab[i] = 0;
 		i++;
+		player = player->next;
 	}
-	return (tab);
+	return (i);
 }

@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_inittab.c                                       :+:      :+:    :+:   */
+/*   live.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/23 23:21:34 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/31 16:29:29 by kahantar         ###   ########.fr       */
+/*   Created: 2017/05/31 23:46:24 by kahantar          #+#    #+#             */
+/*   Updated: 2017/06/01 00:57:31 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/corewar.h"
 
-int *ft_inittab(int x)
+void		live(t_stock *info, int *liv)
 {
-	int *tab;
 	int i;
-
-	i = 0;
-	if (!(tab = (int*)malloc(sizeof(int) * x)))
-		return (0);
-	while (i < x)
-	{
-		tab[i] = 0;
-		i++;
-	}
-	return (tab);
+ 
+	i = ((info->ram[info->pc + 1] << 24) & 0xff000000)
+		   	| ((info->ram[info->pc + 2] << 16) & 0x00ff0000)
+		   	| ((info->ram[info->pc + 3] << 8) & 0x0000ff00)
+		    | (info->ram[info->pc + 4] & 0x000000ff);
+	info->pc = pluspc(info->pc, 5);
+	liv[i - 1]++;
 }

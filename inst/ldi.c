@@ -6,7 +6,7 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 23:43:45 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/30 08:17:00 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/06/01 01:10:07 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	ldi(t_stock *info)
 		   	((info->ram[info->pc + 1 + (S % 512)] << 16) & 0x00ffffff) |
 		   	((info->ram[info->pc + 2 + (S % 512)] << 8) & 0x0000ffff) |
 		   	((info->ram[info->pc + 3 + (S % 512)]) & 0x000000ff));
+		info->pc = pluspc(info->pc, 6);
 	}
 	else if (tabtype[1] == 3 && tabtype[2] == 3)
 	{
@@ -37,6 +38,7 @@ void	ldi(t_stock *info)
 		   	((info->ram[info->pc + 1 + (S % 512)] << 16) & 0x00ffffff) |
 		   	((info->ram[info->pc + 2 + (S % 512)] << 8) & 0x0000ffff) |
 		   	((info->ram[info->pc + 3 + (S % 512)]) & 0x000000ff));
+		info->pc = pluspc(info->pc, 6);
 	}
 	else if (tabtype[1] == 1 && tabtype[2] == 3)
 	{
@@ -45,6 +47,7 @@ void	ldi(t_stock *info)
 		   	((info->ram[info->pc + 1 + (S % 512)] << 16) & 0x00ffffff) |
 		   	((info->ram[info->pc + 2 + (S % 512)] << 8) & 0x0000ffff) |
 		   	((info->ram[info->pc + 3 + (S % 512)]) & 0x000000ff));
+		info->pc = pluspc(info->pc, 5);
 	}
 	else if (tabtype[1] == 1 && tabtype[2] == 2)
 	{
@@ -53,6 +56,7 @@ void	ldi(t_stock *info)
 		   	((info->ram[info->pc + 1 + (S % 512)] << 16) & 0x00ffffff) |
 		   	((info->ram[info->pc + 2 + (S % 512)] << 8) & 0x0000ffff) |
 		   	((info->ram[info->pc + 3 + (S % 512)]) & 0x000000ff));
+		info->pc = pluspc(info->pc, 5);
 	}
 	else if (tabtype[1] == 2 && tabtype[2] == 1)
 	{
@@ -61,6 +65,7 @@ void	ldi(t_stock *info)
 		   	((info->ram[info->pc + 1 + (S % 512)] << 16) & 0x00ffffff) |
 		   	((info->ram[info->pc + 2 + (S % 512)] << 8) & 0x0000ffff) |
 		   	((info->ram[info->pc + 3 + (S % 512)]) & 0x000000ff));
+		info->pc = pluspc(info->pc, 5);
 	}
 	else if (tabtype[1] == 1 && tabtype[2] == 3)
 	{
@@ -69,6 +74,7 @@ void	ldi(t_stock *info)
 		   	((info->ram[info->pc + 1 + (S % 512)] << 16) & 0x00ffffff) |
 		   	((info->ram[info->pc + 2 + (S % 512)] << 8) & 0x0000ffff) |
 		   	((info->ram[info->pc + 3 + (S % 512)]) & 0x000000ff));
+		info->pc = pluspc(info->pc, 5);
 	}
 	if (info->registre[tabvalue[2]] == 0)
 		info->carry = 1;

@@ -6,7 +6,7 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:36:27 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/30 08:31:01 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/06/01 01:08:50 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static void xorid(t_stock *info, int *tabtype, int *tabvalue)
 			info->registre[tabvalue[2]] = 1;
 		else
 			info->registre[tabvalue[2]] = 0;
+		info->pc = pluspc(info->pc, 6);
 	}
 	else if (tabtype[1] == 3 && tabtype[2] == 1)
 	{
@@ -30,6 +31,7 @@ static void xorid(t_stock *info, int *tabtype, int *tabvalue)
 			info->registre[tabvalue[2]] = 1;
 		else
 			info->registre[tabvalue[2]] = 0;
+		info->pc = pluspc(info->pc, 5);
 	}
 	else if (tabtype[1] == 3 && tabtype[2] == 2)
 	{
@@ -38,6 +40,7 @@ static void xorid(t_stock *info, int *tabtype, int *tabvalue)
 			info->registre[tabvalue[2]] = 1;
 		else
 			info->registre[tabvalue[2]] = 0;
+		info->pc = pluspc(info->pc, 8);
 	}
 }
 
@@ -50,6 +53,7 @@ static void xorr(t_stock *info,  int *tabtype, int *tabvalue)
 			info->registre[tabvalue[2]] = 1;
 		else
 			info->registre[tabvalue[2]] = 0;
+		info->pc = pluspc(info->pc, 4);
 	}	
 	else if (tabtype[1] == 1 && tabtype[2] == 2)
 	{
@@ -58,6 +62,7 @@ static void xorr(t_stock *info,  int *tabtype, int *tabvalue)
 			info->registre[tabvalue[2]] = 1;
 		else
 			info->registre[tabvalue[2]] = 0;
+		info->pc = pluspc(info->pc, 7);
 	}	
 	else if (tabtype[1] == 1 && tabtype[2] == 3)
 	{
@@ -66,6 +71,7 @@ static void xorr(t_stock *info,  int *tabtype, int *tabvalue)
 			info->registre[tabvalue[2]] = 1;
 		else
 			info->registre[tabvalue[2]] = 0;
+		info->pc = pluspc(info->pc, 5);
 	}
 	else
 		xorid(info, tabtype, tabvalue);	
@@ -79,6 +85,7 @@ static void xordi(t_stock *info, int *tabtype, int *tabvalue)
 			info->registre[tabvalue[2]] = 1;
 		else
 			info->registre[tabvalue[2]] = 0;
+		info->pc = pluspc(info->pc, 10);
 	}	
 	else if (tabtype[1] == 2 && tabtype[2] == 1)
 	{
@@ -87,6 +94,7 @@ static void xordi(t_stock *info, int *tabtype, int *tabvalue)
 			info->registre[tabvalue[2]] = 1;
 		else
 			info->registre[tabvalue[2]] = 0;
+		info->pc = pluspc(info->pc, 7);
 	}	
 	else if (tabtype[1] == 2 && tabtype[2] == 3)
 	{
@@ -95,6 +103,7 @@ static void xordi(t_stock *info, int *tabtype, int *tabvalue)
 			info->registre[tabvalue[2]] = 1;
 		else
 			info->registre[tabvalue[2]] = 0;
+		info->pc = pluspc(info->pc, 8);
 	}
 	else
 		xorr(info, tabtype, tabvalue);	
