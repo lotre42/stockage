@@ -17,8 +17,8 @@ static void xorid(t_stock *info, int *tabtype, int *tabvalue)
 {
 	if (tabtype[1] == 3 && tabtype[2] == 3)
 	{
-		if ((info->ram[info->pc + (tabvalue[0] % 512)] && !info->ram[info->pc + (tabvalue[1] % 512)])
-		|| (info->ram[info->pc + (tabvalue[1] % 512)] && !info->ram[info->pc + (tabvalue[0] % 512)]))
+		if ((info->ram[pluspc(info->pc, (tabvalue[0] % 512))] && !info->ram[pluspc(info->pc, (tabvalue[1] % 512))])
+		|| (info->ram[pluspc(info->pc, (tabvalue[1] % 512))] && !info->ram[pluspc(info->pc, (tabvalue[0] % 512))]))
 			info->registre[tabvalue[2]] = 1;
 		else
 			info->registre[tabvalue[2]] = 0;
@@ -26,8 +26,8 @@ static void xorid(t_stock *info, int *tabtype, int *tabvalue)
 	}
 	else if (tabtype[1] == 3 && tabtype[2] == 1)
 	{
-		if ((info->ram[info->pc + (tabvalue[0] % 512)] && !info->registre[tabvalue[1]]) ||
-		 (!info->ram[info->pc + (tabvalue[0] % 512)] && info->registre[tabvalue[1]]))
+		if ((info->ram[pluspc(info->pc, (tabvalue[0] % 512))] && !info->registre[tabvalue[1]]) ||
+		 (!info->ram[pluspc(info->pc, (tabvalue[0] % 512))] && info->registre[tabvalue[1]]))
 			info->registre[tabvalue[2]] = 1;
 		else
 			info->registre[tabvalue[2]] = 0;
@@ -35,8 +35,8 @@ static void xorid(t_stock *info, int *tabtype, int *tabvalue)
 	}
 	else if (tabtype[1] == 3 && tabtype[2] == 2)
 	{
-		if ((tabvalue[1] && !info->ram[info->pc + (tabvalue[0] % 512)]) ||
-		 (!tabvalue[1] || info->ram[info->pc + (tabvalue[0] % 512)]))
+		if ((tabvalue[1] && !info->ram[pluspc(info->pc, (tabvalue[0] % 512))]) ||
+		 (!tabvalue[1] || info->ram[pluspc(info->pc, (tabvalue[0] % 512))]))
 			info->registre[tabvalue[2]] = 1;
 		else
 			info->registre[tabvalue[2]] = 0;
@@ -66,8 +66,8 @@ static void xorr(t_stock *info,  int *tabtype, int *tabvalue)
 	}	
 	else if (tabtype[1] == 1 && tabtype[2] == 3)
 	{
-		if ((info->registre[tabvalue[0]] && !info->ram[info->pc + (tabvalue[1] % 512)]) ||
-		(!info->registre[tabvalue[0]] && info->ram[info->pc + (tabvalue[1] % 512)]))
+		if ((info->registre[tabvalue[0]] && !info->ram[pluspc(info->pc, (tabvalue[1] % 512))]) ||
+		(!info->registre[tabvalue[0]] && info->ram[pluspc(info->pc, (tabvalue[1] % 512))]))
 			info->registre[tabvalue[2]] = 1;
 		else
 			info->registre[tabvalue[2]] = 0;
@@ -98,8 +98,8 @@ static void xordi(t_stock *info, int *tabtype, int *tabvalue)
 	}	
 	else if (tabtype[1] == 2 && tabtype[2] == 3)
 	{
-		if ((tabvalue[0] && !info->ram[info->pc + (tabvalue[1] % 512)]) ||
-		(!tabvalue[0] && info->ram[info->pc + (tabvalue[1] % 512)]))
+		if ((tabvalue[0] && !info->ram[pluspc(info->pc, (tabvalue[1] % 512))]) ||
+		(!tabvalue[0] && info->ram[pluspc(info->pc, (tabvalue[1] % 512))]))
 			info->registre[tabvalue[2]] = 1;
 		else
 			info->registre[tabvalue[2]] = 0;

@@ -27,6 +27,7 @@ typedef struct			s_stock
 	int 				carry;
 	unsigned int		*registre;
 	int					pc;
+	int                 cycle;
 }						t_stock;
 
 typedef struct			s_player
@@ -38,10 +39,12 @@ typedef struct			s_player
 	char				*instplayer;
 	int					sizeplayer;
 	int					sizetotal;
+	int                 c;
 	struct s_player		*next;
 	struct s_stock		*stok;
 }						t_player;
 
+int						pluspc(int pc, int i);
 void					ld(t_stock *info);
 void					lld(t_stock *info);
 void					ldi(t_stock *info);
@@ -65,5 +68,10 @@ char					*createram(t_player *player, int nb);
 void					diplayplayer(char *str, int i);
 void					ft_initplayer(t_player *player, char *ram);
 int						ft_core(t_player *player, char *ram);
+void					live(t_stock *info, int *liv);
+t_player				*ft_initplay(t_player *player);
+int						nbplayer(t_player *player);
+void					nbofcycle(t_player *player);
+
 
 #endif

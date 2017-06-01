@@ -22,7 +22,7 @@ void	st(t_stock *info)
 	tabvalue = ft_downvalue(info, tabtype, 0);
 	if (tabtype[2] == 3)
 	{
-		pc = info->pc + (tabvalue[1] % 512);
+		pc = pluspc(info->pc, (tabvalue[1] % 512));
 		*(unsigned int*)((void*)((info->ram + pc))) = info->registre[tabvalue[0]];
 		info->pc = pluspc(info->pc, 5);
 	}

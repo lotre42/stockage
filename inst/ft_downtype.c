@@ -47,7 +47,7 @@ int			*ft_downtype(t_stock *info)
 		tabparam[1] = 2;
 	}
 	else
-		tabparam = ft_numberofparam(info->ram[info->pc + 1]);
+		tabparam = ft_numberofparam(info->ram[pluspc(info->pc, 1)]);
 	i = 1;
 	return (tabparam);
 }

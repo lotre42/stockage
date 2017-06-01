@@ -55,6 +55,7 @@ int			infoplayer(t_player *player)
 	if (!verifnull(player->totalplayer, i))
 		return (0);
 	i = i + 4;
+	player->c = 0;
 	player->sizeplayer = ((player->totalplayer[i] << 24) & 0xff000000) |
 	   	((player->totalplayer[i + 1] << 16) & 0x00ff0000)
 	   	| ((player->totalplayer[i + 2] << 8) & 0x0000ff00) | (player->totalplayer[i + 3] & 0x000000ff);

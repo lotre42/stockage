@@ -16,10 +16,10 @@ void		live(t_stock *info, int *liv)
 {
 	int i;
  
-	i = ((info->ram[info->pc + 1] << 24) & 0xff000000)
-		   	| ((info->ram[info->pc + 2] << 16) & 0x00ff0000)
-		   	| ((info->ram[info->pc + 3] << 8) & 0x0000ff00)
-		    | (info->ram[info->pc + 4] & 0x000000ff);
+	i = ((info->ram[pluspc(info->pc, 1)] << 24) & 0xff000000)
+		   	| ((info->ram[pluspc(info->pc, 2)] << 16) & 0x00ff0000)
+		   	| ((info->ram[pluspc(info->pc, 3)] << 8) & 0x0000ff00)
+		    | (info->ram[pluspc(info->pc, 4)] & 0x000000ff);
 	info->pc = pluspc(info->pc, 5);
 	liv[i - 1]++;
 }

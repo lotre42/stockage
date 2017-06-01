@@ -95,7 +95,7 @@ static int		searchfunction(t_player *player, int *liv)
 	else
 	{
 		player->stok->cycle++;
-		player->stok->pc++;
+		player->stok->pc = pluspc(player->stok->pc, 1);
 	}
 }
 
@@ -107,99 +107,27 @@ int			ft_core(t_player *player, char *ram)
 	int *live;
 
 	live = ft_inittab(nbplayer(player));	
-	cycle = pluspc(4090, 7);
-//	while (player->stok->pc < 4096)
-//	{
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-		searchfunction(player, live);
-//		cycle = cycle + player->stok->cycle;
-//		player = player->next;
-//	}
+	cycle = 0;
+	while (cycle < 100)
+	{
+		//printf("%d\n", player->stok->cycle);
+		if (player->c == 0)
+		{
+			nbofcycle(player);
+			player->c = 1;
+		}
+		if (player->stok->cycle <= 0)
+		{
+			searchfunction(player, live);
+			player->c = 0;
+		}
+		else
+			player->stok->cycle--;
+		cycle++;
+		player = player->next;
+		if (!player)
+			player = tmp;
+	}
 //yy	printf("%d", live[0]);
 //	displayplayer(tmp->stok->ram, 4096);
 	return(0);
