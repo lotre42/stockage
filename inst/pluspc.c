@@ -25,7 +25,8 @@ int		pluspc(int pc, int i)
 		{
 			if (cpypc >= 4095)
 				cpypc = 0;
-			cpypc++;
+			else
+				cpypc++;
 			nb++;
 		}
 	}

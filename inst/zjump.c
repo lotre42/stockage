@@ -6,7 +6,7 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:37:32 by kahantar          #+#    #+#             */
-/*   Updated: 2017/06/01 01:19:53 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/06/03 01:28:38 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 void	zjump(t_stock *info)
 {
-	int i;
+	short i;
 	
-	i = info->ram[pluspc(info->pc, 1)] << 8 | info->ram[pluspc(info->pc, 2)];
-		info->pc = pluspc(info->pc, i);
+	i = ((info->ram[pluspc(info->pc, 1)] << 8) &0xff00) | (info->ram[pluspc(info->pc, 2)] & 0x00ff);
 	if (info->carry == 1)
-		info->pc = info->pc + info->ram[(i % 512)];
+		info->pc = pluspc(info->pc, (i % 512));
+	else
+		info->pc = pluspc(info->pc, 6);
 }
 

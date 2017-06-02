@@ -21,6 +21,7 @@ int		*ft_downvalue(t_stock *info, int *tabtype, int x)
 	index = pluspc(info->pc, 2);
 	i = 1;
 	tabvalue = ft_inittab(tabtype[0]);
+	//printf("%d\n", index);
 	while (i - 1 < tabtype[0])
 	{
 		if (tabtype[i] == 1)
@@ -36,7 +37,7 @@ int		*ft_downvalue(t_stock *info, int *tabtype, int x)
 		}
 		else if (tabtype[i] == 3 || (tabtype[i] == 2 && x == 1))
 		{
-			tabvalue[i - 1] = info->ram[index] << 8 | info->ram[pluspc(index, 1)];
+			tabvalue[i - 1] = ((info->ram[index] << 8) & 0xff00) | (info->ram[pluspc(index, 1)] & 0x00ff);
 			index = pluspc(index, 2);
 		}
 		i++;

@@ -7,7 +7,7 @@
 void		nbofcycle(t_player *player)
 {
 	if (player->stok->ram[player->stok->pc] == 0x01)
-		player->stok->cycle = 5;
+		player->stok->cycle = 10;
 	else if (player->stok->ram[player->stok->pc] == 0x02)
 		player->stok->cycle = 5;
 	else if (player->stok->ram[player->stok->pc] == 0x03)
@@ -28,6 +28,8 @@ void		nbofcycle(t_player *player)
 		player->stok->cycle = 25;
 	else if (player->stok->ram[player->stok->pc] == 0x0b)
 		player->stok->cycle = 25;
+	else if (player->stok->ram[player->stok->pc] == 0x0c)
+		player->stok->cycle = 800;
 	else if (player->stok->ram[player->stok->pc] == 0x0d)
 		player->stok->cycle = 10;
 	else if (player->stok->ram[player->stok->pc] == 0x0e)

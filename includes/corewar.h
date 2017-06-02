@@ -6,7 +6,7 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 22:23:16 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/30 09:02:53 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/06/03 00:13:28 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,18 @@ typedef struct			s_stock
 	unsigned int		*registre;
 	int					pc;
 	int                 cycle;
+	int					kill;
+	int					nbplayer;
 }						t_stock;
+
+typedef struct			s_live
+{
+	int					nbplayer;
+	int					nblive;
+	int 				nbliveplayer;
+	int 				dead;
+	struct s_live		*next;
+}						t_live;
 
 typedef struct			s_player
 {
@@ -45,6 +56,7 @@ typedef struct			s_player
 }						t_player;
 
 int						pluspc(int pc, int i);
+void					ft_initregistre(t_player *player);
 void					ld(t_stock *info);
 void					lld(t_stock *info);
 void					ldi(t_stock *info);
@@ -68,10 +80,17 @@ char					*createram(t_player *player, int nb);
 void					diplayplayer(char *str, int i);
 void					ft_initplayer(t_player *player, char *ram);
 int						ft_core(t_player *player, char *ram);
-void					live(t_stock *info, int *liv);
+void					live(t_stock *info, t_live *live);
 t_player				*ft_initplay(t_player *player);
 int						nbplayer(t_player *player);
 void					nbofcycle(t_player *player);
-
+char					*reverseint(unsigned nb);
+void					cpyint(char *ram, char *src, int pc);
+int						checkdelta(t_live *live);
+int						checkdead(t_live *live);
+void					intcycle(t_live *live);
+void					killplayer(t_player *player, t_live *live);
+int						checkkill(t_player *player);
+int						ft_fork(t_player *player);
 
 #endif

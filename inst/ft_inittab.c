@@ -14,11 +14,11 @@
 
 int *ft_inittab(int x)
 {
-	int *tab;
+	unsigned int *tab;
 	int i;
 
 	i = 0;
-	if (!(tab = (int*)malloc(sizeof(int) * x)))
+	if (!(tab = (unsigned int*)malloc(sizeof(int) * x)))
 		return (0);
 	while (i < x)
 	{

@@ -80,4 +80,5 @@ void	ldi(t_stock *info)
 		info->carry = 1;
 	else
 		info->carry = 0;
+	//printf("%x", info->registre[1]);
 }
