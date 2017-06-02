@@ -6,7 +6,7 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 22:23:16 by kahantar          #+#    #+#             */
-/*   Updated: 2017/06/03 00:13:28 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/06/03 01:49:39 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct			s_stock
 	int                 cycle;
 	int					kill;
 	int					nbplayer;
+	int					quantity;
 }						t_stock;
 
 typedef struct			s_live
