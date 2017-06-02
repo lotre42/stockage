@@ -6,7 +6,7 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 05:31:07 by kahantar          #+#    #+#             */
-/*   Updated: 2017/06/03 00:14:23 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/06/03 01:49:15 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void		ft_initplayer(t_player *player, char *ram)
 		player->stok->cycle = 0;
 		player->stok->kill = 0;
 		player->stok->nbplayer = 0;
+		player->stok->quantity;
 		i++;
 		player = player->next;
 	}

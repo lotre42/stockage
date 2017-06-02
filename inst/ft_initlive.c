@@ -6,7 +6,7 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 17:45:02 by kahantar          #+#    #+#             */
-/*   Updated: 2017/06/03 01:43:55 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/06/03 01:57:32 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,13 @@ int		checkkill(t_player *player)
 
 	i = 0;
 	x = 0;
-	while (x < 2)
+	while (x < player->stok->quantity)
 	{
 		if (!player->stok->kill)
 		{
 			i++;
 		}
+		player = player->next;
 		x++;
 	}
 	if (i <= 1)

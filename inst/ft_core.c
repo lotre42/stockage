@@ -6,7 +6,7 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 05:24:15 by kahantar          #+#    #+#             */
-/*   Updated: 2017/06/03 01:38:27 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/06/03 01:57:39 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,12 +95,15 @@ int			ft_core(t_player *player, char *ram)
 	ft_initregistre(player);
 	while (player)
 	{
+		x++;
 		player->stok->nbplayer = player->stok->registre[1];
 		ft_addplayerinlive(player->stok->registre[1], &live);
 //		ft_putendl(player->nameplayer);
 		player = player->next;
 	}
 	player = tmp;
+	player->stok->quantity = x;
+	x = 0;
 	cycle = 0;
 	while (cycle < cycletodie)
 	{
@@ -131,10 +134,12 @@ int			ft_core(t_player *player, char *ram)
 				else
 					x++;
 				if (checkdead(live))
+				{
 					killplayer(player, live);
 				if (checkkill(player))
 				{
 					break ;
+				}
 				}
 				initcycle(live);
 				cycle = 0;
@@ -150,5 +155,6 @@ int			ft_core(t_player *player, char *ram)
 			ft_putendl(player->nameplayer);
 		player = player->next;
 	}
+//	displayplayer(ram, 4096);
 	return(0);
 }
