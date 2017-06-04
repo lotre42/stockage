@@ -6,7 +6,7 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 22:23:16 by kahantar          #+#    #+#             */
-/*   Updated: 2017/06/03 01:49:39 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/06/04 07:01:02 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 
 typedef struct			s_stock
 {
-	char				*ram;
 	int 				carry;
 	unsigned int		*registre;
 	int					pc;
@@ -39,6 +38,7 @@ typedef struct			s_live
 	int					nblive;
 	int 				nbliveplayer;
 	int 				dead;
+	int					lastlive;
 	struct s_live		*next;
 }						t_live;
 
@@ -57,23 +57,26 @@ typedef struct			s_player
 }						t_player;
 
 int						pluspc(int pc, int i);
+void					checkwinner(t_player *player, t_live *live);
+int						searchfunction(t_player *player, t_live *liv, char *ram);
+void 					gestioncycle(t_player *player, t_live *live);
+t_live 					*ft_addlive(t_player *player);
 void					ft_initregistre(t_player *player);
-void					ld(t_stock *info);
-void					lld(t_stock *info);
-void					ldi(t_stock *info);
-void					lldi(t_stock *info);
-void					add(t_stock *info);
-void					add(t_stock *info);
-void					ft_and(t_stock *info);
-int						*ft_downtype(t_stock *info);
-int						*ft_downvalue(t_stock *info, int *tabtype, int x);
+void					ld(t_stock *info, char *ram);
+void					lld(t_stock *info, char *ram);
+void					ldi(t_stock *info, char *ram);
+void					lldi(t_stock *info, char *ram);
+void					add(t_stock *info, char *ram);
+void					add(t_stock *info, char *ram);
+void					ft_and(t_stock *info, char *ram);
+int						*ft_downtype(t_stock *info, char *ram);
 int						*ft_inittab(int x);
-void					or(t_stock *info);
-void					st(t_stock *info);
-void					sti(t_stock *info);
-void					sub(t_stock *info);
-void					xor(t_stock *info);
-void					zjump(t_stock *info);
+void					or(t_stock *info, char *ram);
+void					st(t_stock *info, char *ram);
+void					sti(t_stock *info, char *ram);
+void					sub(t_stock *info, char *ram);
+void					xor(t_stock *info, char *ram);
+void					zjump(t_stock *info, char *ram);
 void					opencor(char *argv, t_player *player);
 int						infoplayer(t_player *player);
 int						addlist(char *argv, t_player **add);
@@ -81,17 +84,18 @@ char					*createram(t_player *player, int nb);
 void					diplayplayer(char *str, int i);
 void					ft_initplayer(t_player *player, char *ram);
 int						ft_core(t_player *player, char *ram);
-void					live(t_stock *info, t_live *live);
+void					live(t_stock *info, t_live *live, char *ram);
 t_player				*ft_initplay(t_player *player);
 int						nbplayer(t_player *player);
-void					nbofcycle(t_player *player);
+void					nbofcycle(t_player *player, char *ram);
 char					*reverseint(unsigned nb);
-void					cpyint(char *ram, char *src, int pc);
-int						checkdelta(t_live *live);
-int						checkdead(t_live *live);
 void					intcycle(t_live *live);
-void					killplayer(t_player *player, t_live *live);
+int						checkdead(t_live *live);
+int						checkdelta(t_live *live);
+int						ft_fork(t_player *player, char *ram);
 int						checkkill(t_player *player);
-int						ft_fork(t_player *player);
+void					cpyint(char *ram, char *src, int pc);
+void					killplayer(t_player *player, t_live *live);
+int						*ft_downvalue(t_stock *info, int *tabtype, int x, char *ram);
 
 #endif

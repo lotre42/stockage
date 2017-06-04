@@ -47,7 +47,7 @@ static int	cpplayer(t_player *new, t_player *tmp)
 	return (1);
 }
 
-int			ft_fork(t_player *player)
+int			ft_fork(t_player *player, char *ram)
 {
 	t_player *new;
 	t_player *tmp;
@@ -57,8 +57,8 @@ int			ft_fork(t_player *player)
 	if (!(new = malloc(sizeof(t_player))))
 	  return (0);	
 	cpplayer(new, tmp);
-	nb = ((tmp->stok->ram[pluspc(tmp->stok->pc, 1)] << 8) & 0xff00) |
-	((tmp->stok->ram[pluspc(tmp->stok->pc, 2)]) & 0x00ff);
+	nb = ((ram[pluspc(tmp->stok->pc, 1)] << 8) & 0xff00) |
+	((ram[pluspc(tmp->stok->pc, 2)]) & 0x00ff);
 	cpstok(new->stok, tmp->stok, nb);
 	while (tmp->next)
 		tmp = tmp->next;

@@ -34,20 +34,20 @@ static int	*ft_numberofparam(int ocp)
 	return (tabparam);
 }
 
-int			*ft_downtype(t_stock *info)
+int			*ft_downtype(t_stock *info, char *ram)
 {
 	int *tabparam;
 	int i;
 
-	if (info->ram[info->pc] == 0x01 || info->ram[info->pc] == 0x09 ||
-		   	info->ram[info->pc] == 0x0c || info->ram[info->pc] == 0x0f)
+	if (ram[info->pc] == 0x01 || ram[info->pc] == 0x09 ||
+		   	ram[info->pc] == 0x0c || ram[info->pc] == 0x0f)
 	{
 		tabparam = ft_inittab(2);
 		tabparam[0] = 1;
 		tabparam[1] = 2;
 	}
 	else 
-		tabparam = ft_numberofparam(info->ram[pluspc(info->pc, 1)]);
+		tabparam = ft_numberofparam(ram[pluspc(info->pc, 1)]);
 	i = 1;
 	return (tabparam);
 }

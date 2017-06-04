@@ -12,13 +12,13 @@
 
 #include "../includes/corewar.h"
 
-void	add(t_stock *info)
+void	add(t_stock *info, char *ram)
 {
 	int *tabtype;
 	int *tabvalue;
 
-	tabtype = ft_downtype(info);
-	tabvalue = ft_downvalue(info, tabtype, 0);
+	tabtype = ft_downtype(info, ram);
+	tabvalue = ft_downvalue(info, tabtype, 0, ram);
 	info->registre[tabvalue[2]] = info->registre[tabvalue[0]] +
 	   	info->registre[tabvalue[1]];
 	info->pc = pluspc(info->pc, 5);

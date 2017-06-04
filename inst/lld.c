@@ -12,19 +12,19 @@
 
 #include "../includes/corewar.h"
 
-void	lld(t_stock *info)
+void	lld(t_stock *info, char *ram)
 {
 	int *tabtype;
 	int	*tabvalue;
 
-	tabtype = ft_downtype(info);
-	tabvalue = ft_downvalue(info, tabtype, 0);
+	tabtype = ft_downtype(info, ram);
+	tabvalue = ft_downvalue(info, tabtype, 0, ram);
 	if (tabtype[1] == 3)
 	{
-		info->registre[tabvalue[1]] = (info->ram[pluspc(info->pc, (tabvalue[0]))] << 24)
-		   	| ((info->ram[pluspc(info->pc, 1 + (tabvalue[0]))] << 16) & 0x00ffffff)
-		   	| ((info->ram[pluspc(info->pc, 2 + (tabvalue[0]))] << 8) & 0x0000ffff)
-		    | (info->ram[pluspc(info->pc, 3 + (tabvalue[0]))] & 0x000000ff);
+		info->registre[tabvalue[1]] = (ram[pluspc(info->pc, (tabvalue[0]))] << 24)
+		   	| ((ram[pluspc(info->pc, 1 + (tabvalue[0]))] << 16) & 0x00ffffff)
+		   	| ((ram[pluspc(info->pc, 2 + (tabvalue[0]))] << 8) & 0x0000ffff)
+		    | (ram[pluspc(info->pc, 3 + (tabvalue[0]))] & 0x000000ff);
 		info->pc = pluspc(info->pc, 5);
 	}
 	else if (tabtype[1] == 2)

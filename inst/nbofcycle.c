@@ -4,35 +4,35 @@
 
 #include "../includes/corewar.h"
 
-void		nbofcycle(t_player *player)
+void		nbofcycle(t_player *player, char *ram)
 {
-	if (player->stok->ram[player->stok->pc] == 0x01)
+	if (ram[player->stok->pc] == 0x01)
 		player->stok->cycle = 10;
-	else if (player->stok->ram[player->stok->pc] == 0x02)
+	else if (ram[player->stok->pc] == 0x02)
 		player->stok->cycle = 5;
-	else if (player->stok->ram[player->stok->pc] == 0x03)
+	else if (ram[player->stok->pc] == 0x03)
 		player->stok->cycle = 5;
-	else if (player->stok->ram[player->stok->pc] == 0x04)
+	else if (ram[player->stok->pc] == 0x04)
 		player->stok->cycle = 10;
-	else if (player->stok->ram[player->stok->pc] == 0x05)
+	else if (ram[player->stok->pc] == 0x05)
 		player->stok->cycle = 10;
-	else if (player->stok->ram[player->stok->pc] == 0x06)
+	else if (ram[player->stok->pc] == 0x06)
 		player->stok->cycle = 6;
-	else if (player->stok->ram[player->stok->pc] == 0x07)
+	else if (ram[player->stok->pc] == 0x07)
 		player->stok->cycle = 6;
-	else if (player->stok->ram[player->stok->pc] == 0x08)
+	else if (ram[player->stok->pc] == 0x08)
 		player->stok->cycle = 6;
-	else if (player->stok->ram[player->stok->pc] == 0x09)
+	else if (ram[player->stok->pc] == 0x09)
 		player->stok->cycle = 20;
-	else if (player->stok->ram[player->stok->pc] == 0x0a)
+	else if (ram[player->stok->pc] == 0x0a)
 		player->stok->cycle = 25;
-	else if (player->stok->ram[player->stok->pc] == 0x0b)
+	else if (ram[player->stok->pc] == 0x0b)
 		player->stok->cycle = 25;
-	else if (player->stok->ram[player->stok->pc] == 0x0c)
+	else if (ram[player->stok->pc] == 0x0c)
 		player->stok->cycle = 800;
-	else if (player->stok->ram[player->stok->pc] == 0x0d)
+	else if (ram[player->stok->pc] == 0x0d)
 		player->stok->cycle = 10;
-	else if (player->stok->ram[player->stok->pc] == 0x0e)
+	else if (ram[player->stok->pc] == 0x0e)
 		player->stok->cycle = 50;
 	else
 		player->stok->cycle = 0;

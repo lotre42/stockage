@@ -13,68 +13,68 @@
 
 #include "../includes/corewar.h"
 
-void	lldi(t_stock *info)
+void	lldi(t_stock *info, char *ram)
 {
 	int S;
 	int *tabtype;
 	int *tabvalue;
 
-	tabtype = ft_downtype(info);
-	tabvalue = ft_downvalue(info, tabtype, 1);
+	tabtype = ft_downtype(info, ram);
+	tabvalue = ft_downvalue(info, tabtype, 1, ram);
 	if (tabtype[1] == 3 && tabtype[2] == 2)
 	{
-		S = ((info->ram[pluspc(info->pc, (tabvalue[0]))] << 8) & 0xff00)|
-		   	((info->ram[pluspc(info->pc, 1 + (tabvalue[0]))] & 0x00ff)) + tabvalue[1];
-		info->registre[tabvalue[2]] = (((info->ram[pluspc(info->pc, (S))] << 24) & 0xff000000)|
-		   	((info->ram[pluspc(info->pc, 1 + (S))] << 16) & 0x00ff0000) |
-		   	((info->ram[pluspc(info->pc, 2 + (S))] << 8) & 0x0000ff00) |
-		   	((info->ram[pluspc(info->pc, 3 + (S))]) & 0x000000ff));
+		S = ((ram[pluspc(info->pc, (tabvalue[0]))] << 8) & 0xff00)|
+		   	((ram[pluspc(info->pc, 1 + (tabvalue[0]))] & 0x00ff)) + tabvalue[1];
+		info->registre[tabvalue[2]] = (((ram[pluspc(info->pc, (S))] << 24) & 0xff000000)|
+		   	((ram[pluspc(info->pc, 1 + (S))] << 16) & 0x00ff0000) |
+		   	((ram[pluspc(info->pc, 2 + (S))] << 8) & 0x0000ff00) |
+		   	((ram[pluspc(info->pc, 3 + (S))]) & 0x000000ff));
 		info->pc = pluspc(info->pc, 6);
 	}
 	else if (tabtype[1] == 3 && tabtype[2] == 3)
 	{
-		S = ((info->ram[pluspc(info->pc, (tabvalue[0]))] << 8) & 0xff00) |
-		   	((info->ram[pluspc(info->pc, 1 + (tabvalue[0]))] & 0x00ff)) + info->ram[pluspc(info->pc, (tabvalue[1]))];
-		info->registre[tabvalue[2]] = ((info->ram[pluspc(info->pc, (S))] << 24) |
-		   	((info->ram[pluspc(info->pc, 1 + (S))] << 16) & 0x00ffffff) |
-		   	((info->ram[pluspc(info->pc, 2 + (S))] << 8) & 0x0000ffff) |
-		   	((info->ram[pluspc(info->pc, 3 + (S))]) & 0x000000ff));
+		S = ((ram[pluspc(info->pc, (tabvalue[0]))] << 8) & 0xff00) |
+		   	((ram[pluspc(info->pc, 1 + (tabvalue[0]))] & 0x00ff)) + ram[pluspc(info->pc, (tabvalue[1]))];
+		info->registre[tabvalue[2]] = ((ram[pluspc(info->pc, (S))] << 24) |
+		   	((ram[pluspc(info->pc, 1 + (S))] << 16) & 0x00ffffff) |
+		   	((ram[pluspc(info->pc, 2 + (S))] << 8) & 0x0000ffff) |
+		   	((ram[pluspc(info->pc, 3 + (S))]) & 0x000000ff));
 		info->pc = pluspc(info->pc, 6);
 	}
 	else if (tabtype[1] == 1 && tabtype[2] == 3)
 	{
-		S = info->registre[tabvalue[0]] + info->ram[pluspc(info->pc, (tabvalue[1]))];
-		info->registre[tabvalue[2]] = (((info->ram[pluspc(info->pc, (S))] << 24) & 0xff000000)|
-		   	((info->ram[pluspc(info->pc, 1 + (S))] << 16) & 0x00ff0000) |
-		   	((info->ram[pluspc(info->pc, 2 + (S))] << 8) & 0x0000ff00) |
-		   	((info->ram[pluspc(info->pc, 3 + (S))]) & 0x000000ff));
+		S = info->registre[tabvalue[0]] + ram[pluspc(info->pc, (tabvalue[1]))];
+		info->registre[tabvalue[2]] = (((ram[pluspc(info->pc, (S))] << 24) & 0xff000000)|
+		   	((ram[pluspc(info->pc, 1 + (S))] << 16) & 0x00ff0000) |
+		   	((ram[pluspc(info->pc, 2 + (S))] << 8) & 0x0000ff00) |
+		   	((ram[pluspc(info->pc, 3 + (S))]) & 0x000000ff));
 		info->pc = pluspc(info->pc, 5);
 	}
 	else if (tabtype[1] == 1 && tabtype[2] == 2)
 	{
 		S = info->registre[tabvalue[0]] + tabvalue[1];
-		info->registre[tabvalue[2]] = (((info->ram[pluspc(info->pc, (S))] << 24) & 0xff000000) |
-		   	((info->ram[pluspc(info->pc, 1 + (S))] << 16) & 0x00ff0000) |
-		   	((info->ram[pluspc(info->pc, 2 + (S))] << 8) & 0x0000ff00) |
-		   	((info->ram[pluspc(info->pc, 3 + (S))]) & 0x000000ff));
+		info->registre[tabvalue[2]] = (((ram[pluspc(info->pc, (S))] << 24) & 0xff000000) |
+		   	((ram[pluspc(info->pc, 1 + (S))] << 16) & 0x00ff0000) |
+		   	((ram[pluspc(info->pc, 2 + (S))] << 8) & 0x0000ff00) |
+		   	((ram[pluspc(info->pc, 3 + (S))]) & 0x000000ff));
 		info->pc = pluspc(info->pc, 5);
 	}
 	else if (tabtype[1] == 2 && tabtype[2] == 1)
 	{
 		S = info->registre[tabvalue[1]] + tabvalue[0];
-		info->registre[tabvalue[2]] = (((info->ram[pluspc(info->pc, (S))] << 24) & 0xff000000) |
-		   	((info->ram[pluspc(info->pc, 1 + (S))] << 16) & 0x00ff0000) |
-		   	((info->ram[pluspc(info->pc, 2 + (S))] << 8) & 0x0000ff00) |
-		   	((info->ram[pluspc(info->pc, 3 + (S))]) & 0x000000ff));
+		info->registre[tabvalue[2]] = (((ram[pluspc(info->pc, (S))] << 24) & 0xff000000) |
+		   	((ram[pluspc(info->pc, 1 + (S))] << 16) & 0x00ff0000) |
+		   	((ram[pluspc(info->pc, 2 + (S))] << 8) & 0x0000ff00) |
+		   	((ram[pluspc(info->pc, 3 + (S))]) & 0x000000ff));
 		info->pc = pluspc(info->pc, 5);
 	}
 	else if (tabtype[1] == 1 && tabtype[2] == 3)
 	{
-		S = tabvalue[0] + info->ram[pluspc(info->pc, (tabvalue[1]))];
-		info->registre[tabvalue[2]] = (((info->ram[pluspc(info->pc, (S))] << 24) & 0xff000000) |
-		   	((info->ram[pluspc(info->pc, 1 + (S))] << 16) & 0x00ff0000) |
-		   	((info->ram[pluspc(info->pc, 2 + (S))] << 8) & 0x0000ff00) |
-		   	((info->ram[pluspc(info->pc, 3 + (S))]) & 0x000000ff));
+		S = tabvalue[0] + ram[pluspc(info->pc, (tabvalue[1]))];
+		info->registre[tabvalue[2]] = (((ram[pluspc(info->pc, (S))] << 24) & 0xff000000) |
+		   	((ram[pluspc(info->pc, 1 + (S))] << 16) & 0x00ff0000) |
+		   	((ram[pluspc(info->pc, 2 + (S))] << 8) & 0x0000ff00) |
+		   	((ram[pluspc(info->pc, 3 + (S))]) & 0x000000ff));
 		info->pc = pluspc(info->pc, 5);
 	}
 	else

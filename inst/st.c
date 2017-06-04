@@ -12,19 +12,19 @@
 
 #include "../includes/corewar.h"
 
-void	st(t_stock *info)
+void	st(t_stock *info, char *ram)
 {
 	int	*tabtype;
 	int *tabvalue;
 	int pc;
 
-	tabtype = ft_downtype(info);
-	tabvalue = ft_downvalue(info, tabtype, 0);
+	tabtype = ft_downtype(info, ram);
+	tabvalue = ft_downvalue(info, tabtype, 0, ram);
 	if (tabtype[2] == 3)
 	{
 		pc = pluspc(info->pc, (tabvalue[1] % 512));
-		cpyint(info->ram, reverseint(info->registre[tabvalue[0]]), pc);
-		//*(unsigned int*)((void*)((info->ram + pc))) = info->registre[tabvalue[0]];
+		cpyint(ram, reverseint(info->registre[tabvalue[0]]), pc);
+		//*(unsigned int*)((void*)((ram + pc))) = info->registre[tabvalue[0]];
 		info->pc = pluspc(info->pc, 5);
 	}
 	else

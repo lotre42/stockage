@@ -12,7 +12,7 @@
 
 #include "../includes/corewar.h"
 
-int		*ft_downvalue(t_stock *info, int *tabtype, int x)
+int		*ft_downvalue(t_stock *info, int *tabtype, int x, char *ram)
 {
 	int *tabvalue;
 	int index;
@@ -26,18 +26,18 @@ int		*ft_downvalue(t_stock *info, int *tabtype, int x)
 	{
 		if (tabtype[i] == 1)
 		{
-			tabvalue[i - 1] = info->ram[index];
+			tabvalue[i - 1] = ram[index];
 			index = pluspc(index, 1);
 		}
 		else if (tabtype[i] == 2 && x == 0)
 		{
-			tabvalue[i - 1] = info->ram[index] << 24 | info->ram[pluspc(index, 1)] << 16 |
-			   	info->ram[pluspc(index, 2)] << 8 | info->ram[pluspc(index, 3)];
+			tabvalue[i - 1] = ram[index] << 24 | ram[pluspc(index, 1)] << 16 |
+			   	ram[pluspc(index, 2)] << 8 | ram[pluspc(index, 3)];
 			index = pluspc(index, 4);
 		}
 		else if (tabtype[i] == 3 || (tabtype[i] == 2 && x == 1))
 		{
-			tabvalue[i - 1] = ((info->ram[index] << 8) & 0xff00) | (info->ram[pluspc(index, 1)] & 0x00ff);
+			tabvalue[i - 1] = ((ram[index] << 8) & 0xff00) | (ram[pluspc(index, 1)] & 0x00ff);
 			index = pluspc(index, 2);
 		}
 		i++;

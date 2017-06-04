@@ -12,14 +12,14 @@
 
 #include "../includes/corewar.h"
 
-void		live(t_stock *info, t_live *live)
+void		live(t_stock *info, t_live *live, char *ram)
 {
 	int i;
  
-	i = ((info->ram[pluspc(info->pc, 1)] << 24) & 0xff000000)
-		   	| ((info->ram[pluspc(info->pc, 2)] << 16) & 0x00ff0000)
-		   	| ((info->ram[pluspc(info->pc, 3)] << 8) & 0x0000ff00)
-		    | (info->ram[pluspc(info->pc, 4)] & 0x000000ff);
+	i = ((ram[pluspc(info->pc, 1)] << 24) & 0xff000000)
+		   	| ((ram[pluspc(info->pc, 2)] << 16) & 0x00ff0000)
+		   	| ((ram[pluspc(info->pc, 3)] << 8) & 0x0000ff00)
+		    | (ram[pluspc(info->pc, 4)] & 0x000000ff);
 	info->pc = pluspc(info->pc, 5);
 	live->lastlive = i;
 	while (live)

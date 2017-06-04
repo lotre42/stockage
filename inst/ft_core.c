@@ -12,97 +12,77 @@
 
 #include "../includes/corewar.h"
 
-int		searchfunction(t_player *player, t_live *liv)
+int		searchfunction(t_player *player, t_live *liv, char *ram)
 {
-	ft_putstr("\n------------>");
 	//printf("[%hhx]", (player->stok->ram[player->stok->pc]));
 	//displayplayer(player->stok->ram, 2059);
-if (player->stok->ram[player->stok->pc])
-	ft_putstr("JE SUIS VIVANT");
-
-	if (player->stok->ram[player->stok->pc] && player->stok->ram[player->stok->pc] == 0x01)
+	if (ram[player->stok->pc] == 0x01)
 	{
-			ft_putstr("3\n");
 
 		liv->nblive++;
-		live(player->stok, liv);
+		live(player->stok, liv,ram);
 	}
-	else if (player->stok->ram[player->stok->pc] == 0x02)
+	else if (ram[player->stok->pc] == 0x02)
 	{
-		ft_putstr("1\n");
-		ld(player->stok);
+		ld(player->stok, ram);
 	}
-	else if (player->stok->ram[player->stok->pc] == 0x03)
+	else if (ram[player->stok->pc] == 0x03)
 		{
-			ft_putstr("2\n");
-			st(player->stok);
+			st(player->stok, ram);
 		}
-	else if (player->stok->ram[player->stok->pc] == 0x04)
+	else if (ram[player->stok->pc] == 0x04)
 		{
-			ft_putstr("3\n");
-			add(player->stok);}
-	else if (player->stok->ram[player->stok->pc] == 0x05)
+			add(player->stok, ram);}
+	else if (ram[player->stok->pc] == 0x05)
 			{
-			ft_putstr("4\n");
-			sub(player->stok);}
-	else if (player->stok->ram[player->stok->pc] == 0x06)
+			sub(player->stok, ram);}
+	else if (ram[player->stok->pc] == 0x06)
 			{
-			ft_putstr("5\n");
-			ft_and(player->stok);
+			ft_and(player->stok, ram);
 		}
-	else if (player->stok->ram[player->stok->pc] == 0x07)
+	else if (ram[player->stok->pc] == 0x07)
 		{
-			ft_putstr("3\n");
-			or(player->stok);
+			or(player->stok, ram);
 		}
-	else if (player->stok->ram[player->stok->pc] == 0x08)
+	else if (ram[player->stok->pc] == 0x08)
 		{
-			ft_putstr("3\n");
-		xor(player->stok);
+		xor(player->stok, ram);
 		}
-	else if (player->stok->ram[player->stok->pc] == 0x09)
+	else if (ram[player->stok->pc] == 0x09)
 		{
-			ft_putstr("3\n");
 
-		zjump(player->stok);
+		zjump(player->stok, ram);
 		}
-	else if (player->stok->ram[player->stok->pc] == 0x0a)
+	else if (ram[player->stok->pc] == 0x0a)
 		{
-			ft_putstr("3\n");
-		ldi(player->stok);
+		ldi(player->stok, ram);
 		}
-	else if (player->stok->ram[player->stok->pc] == 0x0b)
+	else if (ram[player->stok->pc] == 0x0b)
 		{
-			ft_putstr("3\n");
 
-		sti(player->stok);
+		sti(player->stok, ram);
 		}
-	else if (player->stok->ram[player->stok->pc] == 0x0c)
+	else if (ram[player->stok->pc] == 0x0c)
 		{
-			ft_putstr("3\n");
 
-		ft_fork(player);
+		ft_fork(player, ram);
 		}
-	else if (player->stok->ram[player->stok->pc] == 0x0d)
+	else if (ram[player->stok->pc] == 0x0d)
 		{
-			ft_putstr("3\n");
 
-		lld(player->stok);
+		lld(player->stok, ram);
 		}
-	else if (player->stok->ram[player->stok->pc] == 0x0e)
+	else if (ram[player->stok->pc] == 0x0e)
 		{
-			ft_putstr("3\n");
 
-		lldi(player->stok);
+		lldi(player->stok, ram);
 		}
 	else
 	{
-			ft_putstr("3\n");
 
 		player->stok->cycle++;
 		player->stok->pc = pluspc(player->stok->pc, 1);
 	}
-	ft_putstr("<------------\n");
 	return(0);
 }
 
@@ -162,10 +142,10 @@ int			ft_core(t_player *player, char *ram)
 	cycle = 0;
 	while (cycle < cycletodie)
 	{
-		ft_putnbr(cycle);
+
 		if (player->c == 0)
 		{
-			nbofcycle(player);
+			nbofcycle(player, ram);
 			player->c = 1;
 		}
 		if (player->stok->cycle <= 0 /*&& !player->stok->kill*/)
@@ -204,6 +184,6 @@ int			ft_core(t_player *player, char *ram)
 	}
 	player = tmp;
 	checkwinner(player, live);
-//		displayplayer(ram, 4096);
+		displayplayer(ram, 4096);
 	return(0);
 }
