@@ -1,35 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   addlist.c                                          :+:      :+:    :+:   */
+/*   checkwinner.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/29 06:35:04 by kahantar          #+#    #+#             */
-/*   Updated: 2017/06/04 02:54:37 by kahantar         ###   ########.fr       */
+/*   Created: 2017/06/04 00:53:36 by kahantar          #+#    #+#             */
+/*   Updated: 2017/06/04 06:35:25 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/corewar.h"
 
-int		addlist(char *argv, t_player **add)
+void	checkwinner(t_player *player, t_live *live)
 {
-	t_player *new;
+	int x;
 	t_player *tmp;
 	int i;
 
+	x = 0;
 	i = 0;
-	new = ft_initplay(new);
-	opencor(argv, new);
-	infoplayer(new);
-	tmp = *add;
-	if (!tmp)
-		*add = new;
+	tmp = player;
+	while (x < tmp->stok->quantity)
+	{
+		if (player->stok->kill == 0)
+			i++;
+		player = player->next;
+		x++;
+	}
+	if (i == 1)
+	{
+		while (x < tmp->stok->quantity)
+		{
+			if (tmp->stok->kill == 0)
+				ft_putendl(tmp->nameplayer);
+			tmp = tmp->next;
+		}
+	}
 	else
 	{
-		while (tmp->next)
+		while (tmp && (live->lastlive != tmp->stok->nbplayer))
+		{
 			tmp = tmp->next;
-		tmp->next = new;
+		}
+		if (tmp)
+			ft_putendl(tmp->nameplayer);
 	}
-	return (0);
 }
+
+

@@ -6,7 +6,7 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:35:06 by kahantar          #+#    #+#             */
-/*   Updated: 2017/06/02 20:17:36 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/06/04 04:57:24 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ static void orid(t_stock *info, int *tabtype, int *tabvalue)
 			info->registre[tabvalue[2]] = 0;
 		info->pc = pluspc(info->pc, 9);
 	}
+	else
+		info->pc = pluspc(info->pc, 1);
 }
 
 static void orr(t_stock *info, int *tabtype, int *tabvalue)
@@ -108,7 +110,7 @@ void	or(t_stock *info)
 	tabtype = ft_downtype(info);
 	tabvalue = ft_downvalue(info, tabtype, 0);
 	ordi(info, tabtype, tabvalue);
-	if (info->registre[tabvalue[2]] == 0)
+	if (info->carry == 0)
 		info->carry = 1;
 	else
 		info->carry = 0;

@@ -6,7 +6,7 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 22:40:55 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/31 20:22:23 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/06/04 07:45:45 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int main(int argc, char **argv)
 	}
 	ram = createram(player, argc - 1);
 	ft_initplayer(player, ram);
+//	gestion(player);
 	ft_core(player, ram);
 //	printf("%d", info.registre[3]);
 	return (0);

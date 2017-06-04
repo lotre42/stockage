@@ -6,7 +6,7 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 23:46:24 by kahantar          #+#    #+#             */
-/*   Updated: 2017/06/03 01:28:15 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/06/04 06:23:45 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,11 @@ void		live(t_stock *info, t_live *live)
 		   	| ((info->ram[pluspc(info->pc, 3)] << 8) & 0x0000ff00)
 		    | (info->ram[pluspc(info->pc, 4)] & 0x000000ff);
 	info->pc = pluspc(info->pc, 5);
+	live->lastlive = i;
 	while (live)
 	{
 		if (live->nbplayer == i)
-		{
 			live->nbliveplayer = live->nbliveplayer + 1;
-		}
 		live = live->next;
 	}
 }

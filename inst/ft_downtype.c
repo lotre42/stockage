@@ -6,7 +6,7 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/23 23:39:26 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/30 08:11:10 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/06/04 05:07:50 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int			*ft_downtype(t_stock *info)
 		tabparam[0] = 1;
 		tabparam[1] = 2;
 	}
-	else
+	else 
 		tabparam = ft_numberofparam(info->ram[pluspc(info->pc, 1)]);
 	i = 1;
 	return (tabparam);

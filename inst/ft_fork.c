@@ -6,7 +6,7 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/27 16:31:06 by kahantar          #+#    #+#             */
-/*   Updated: 2017/06/03 01:28:30 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/06/04 04:59:51 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ static int	cpstok(t_stock *new, t_stock *tmp, int nb)
 	int i;
 
 	i = 0;
-	new->ram = tmp->ram;
+	new->nbplayer = tmp->nbplayer;
+	// new->ram = tmp->ram;
 	new->carry = tmp->carry;
 	new->pc = pluspc(tmp->pc, nb);
 	new->cycle = 0;

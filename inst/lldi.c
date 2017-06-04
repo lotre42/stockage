@@ -6,7 +6,7 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/27 15:38:57 by kahantar          #+#    #+#             */
-/*   Updated: 2017/06/01 01:12:30 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/06/04 05:00:36 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ void	lldi(t_stock *info)
 		   	((info->ram[pluspc(info->pc, 3 + (S))]) & 0x000000ff));
 		info->pc = pluspc(info->pc, 5);
 	}
+	else
+		info->pc = pluspc(info->pc, 1);
 	if (info->registre[tabvalue[2]] == 0)
 		info->carry = 1;
 	else

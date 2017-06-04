@@ -6,7 +6,7 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/27 15:36:54 by kahantar          #+#    #+#             */
-/*   Updated: 2017/06/01 01:15:06 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/06/04 05:00:17 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	lld(t_stock *info)
 		info->registre[tabvalue[1]] = tabvalue[0];
 		info->pc = pluspc(info->pc, 7);
 	}
+	else
+		info->pc = pluspc(info->pc, 1);
 	if (info->carry == 0)
 		info->carry = 1;
 	else
