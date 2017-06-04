@@ -28,6 +28,7 @@ void	checkwinner(t_player *player, t_live *live)
 		player = player->next;
 		x++;
 	}
+	x = 0;
 	if (i == 1)
 	{
 		while (x < tmp->stok->quantity)
@@ -35,10 +36,12 @@ void	checkwinner(t_player *player, t_live *live)
 			if (tmp->stok->kill == 0)
 				ft_putendl(tmp->nameplayer);
 			tmp = tmp->next;
+			x++;
 		}
 	}
 	else
 	{
+		ft_putnbr(live->lastlive);
 		while (tmp && (live->lastlive != tmp->stok->nbplayer))
 		{
 			tmp = tmp->next;

@@ -65,8 +65,8 @@ int main(int argc, char **argv)
 	}
 	ram = createram(player, argc - 1);
 	ft_initplayer(player, ram);
-//	gestion(player);
-	ft_core(player, ram);
+	gestion(player);
+//	ft_core(player, ram);
 //	printf("%d", info.registre[3]);
 	return (0);
 }

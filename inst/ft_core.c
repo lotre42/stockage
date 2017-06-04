@@ -148,7 +148,7 @@ int			ft_core(t_player *player, char *ram)
 			nbofcycle(player, ram);
 			player->c = 1;
 		}
-		if (player->stok->cycle <= 0 /*&& !player->stok->kill*/)
+		if (player->stok->cycle <= 0 && !player->stok->kill)
 		{
 			searchfunction(player, live, ram);
 			player->c = 0;
@@ -184,6 +184,6 @@ int			ft_core(t_player *player, char *ram)
 	}
 	player = tmp;
 	checkwinner(player, live);
-		displayplayer(ram, 4096);
+	//	displayplayer(ram, 4096);
 	return(0);
 }

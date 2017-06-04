@@ -12,29 +12,51 @@
 
 #include "../includes/corewar.h"
 
-void gestioncycle(t_player *player, t_live *live)
+static int	ft_dead(t_player *player, t_live *live, int *cycle)
+{
+	int x;
+
+	x = 0;
+	if (*cycle >= CYCLE_TO_DIE)
+			{
+				if (checkdelta(live) || x >= 10)
+				{
+					//CYCLE_TO_DIE = CYCLE_TO_DIE - CYCLE_DELTA;
+					x = 0;
+				}
+				else
+					x++;
+				if (checkdead(live))
+				{
+					killplayer(player, live);
+					if (checkkill(player))
+					{
+						return (0);
+					}
+				}
+				initcycle(live);
+				*cycle = 0;
+			}
+			return (1);
+}
+
+static void gestioncycle(t_player *player, t_live *live, char *ram)
 {
 	int cycle;
-	int cycletodie;
-	int cycledelta;
 	t_player *tmp;
 
 	tmp = player;
-	cycledelta = 50;
-	cycletodie = 1536;
 	cycle = 0;
-	while (cycle < 75)
+	while (cycle < CYCLE_TO_DIE)
 	{
-		ft_putnbr(cycle);
-		ft_putendl("");
 		if (player->c == 0)
 		{
-			nbofcycle(player);
+			nbofcycle(player, ram);
 			player->c = 1;
 		}
-		if (player->stok->cycle == 0)
+		if (player->stok->cycle == 0 && !player->stok->kill)
 		{
-			searchfunction(player, live);
+			searchfunction(player, live, ram);
 			player->c = 0;
 		}
 		else
@@ -44,16 +66,19 @@ void gestioncycle(t_player *player, t_live *live)
 		{
 			player = tmp;
 			cycle++;
+			if (!ft_dead(player, live, &cycle))
+				break ;
 		}
 	}
 }
 
-int  gestion(t_player *player)
+int  gestion(t_player *player, char *ram)
 {
 	t_live *live;
 
 	ft_initregistre(player);
 	live = ft_addlive(player);
-	gestioncycle(player, live);
+	gestioncycle(player, live, ram);
+	checkwinner(player, live);
 	return (1);
 }

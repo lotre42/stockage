@@ -19,6 +19,7 @@ int		checkkill(t_player *player)
 
 	i = 0;
 	x = 0;
+
 	while (x < player->stok->quantity)
 	{
 		if (!player->stok->kill)
@@ -59,7 +60,7 @@ void	killplayer(t_player *player, t_live *live)
 
 int		checkdelta(t_live *live)
 {
-	if (live->nblive > 21)
+	if (live->nblive > NBR_LIVE)
 	{
 		live->nblive = 0;
 		return (1);
