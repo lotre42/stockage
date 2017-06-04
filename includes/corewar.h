@@ -21,6 +21,11 @@
 #include <sys/uio.h>
 # include "../libft/includes/libft.h"
 
+#define CYCLE_TO_DIE			1536
+#define CYCLE_DELTA				50
+#define NBR_LIVE				21
+#define MAX_CHECKS				10
+
 typedef struct			s_stock
 {
 	int 				carry;
@@ -59,7 +64,6 @@ typedef struct			s_player
 int						pluspc(int pc, int i);
 void					checkwinner(t_player *player, t_live *live);
 int						searchfunction(t_player *player, t_live *liv, char *ram);
-void 					gestioncycle(t_player *player, t_live *live);
 t_live 					*ft_addlive(t_player *player);
 void					ft_initregistre(t_player *player);
 void					ld(t_stock *info, char *ram);
