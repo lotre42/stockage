@@ -18,80 +18,80 @@ int		searchfunction(t_player *player, t_live *liv, char *ram)
 	//displayplayer(player->stok->ram, 2059);
 	if (ram[player->stok->pc] == 0x01)
 	{
-		ft_putendl("live");
+		// ft_putendl("live");
 		liv->nblive++;
 		live(player->stok, liv,ram);
 	}
 	else if (ram[player->stok->pc] == 0x02)
 	{
-		ft_putendl("ld");
+		// ft_putendl("ld");
 		ld(player->stok, ram);
 	}
 	else if (ram[player->stok->pc] == 0x03)
 		{
-			ft_putendl("st");
+			// ft_putendl("st");
 			st(player->stok, ram);
 		}
 	else if (ram[player->stok->pc] == 0x04)
 		{
-			ft_putendl("add");
+			// ft_putendl("add");
 			add(player->stok, ram);
 		}
 	else if (ram[player->stok->pc] == 0x05)
 			{
-				ft_putendl("sub");
+				// ft_putendl("sub");
 			sub(player->stok, ram);
 		}
 	else if (ram[player->stok->pc] == 0x06)
 			{
-				ft_putendl("and");
+				// ft_putendl("and");
 			ft_and(player->stok, ram);
 		}
 	else if (ram[player->stok->pc] == 0x07)
 		{
-			ft_putendl("or");
+			// ft_putendl("or");
 			or(player->stok, ram);
 		}
 	else if (ram[player->stok->pc] == 0x08)
 		{
-			ft_putendl("xor");
+			// ft_putendl("xor");
 		xor(player->stok, ram);
 		}
 	else if (ram[player->stok->pc] == 0x09)
 		{
-			ft_putendl("jump");
+			// ft_putendl("jump");
 		zjump(player->stok, ram);
 		}
 	else if (ram[player->stok->pc] == 0x0a)
 		{
-			ft_putendl("ldi");
+			// ft_putendl("ldi");
 		ldi(player->stok, ram);
 		}
 	else if (ram[player->stok->pc] == 0x0b)
 		{
-ft_putendl("sti");
+// ft_putendl("sti");
 		sti(player->stok, ram);
 		}
 	else if (ram[player->stok->pc] == 0x0c)
 		{
-			ft_putendl("fork");
+			// ft_putendl("fork");
 		ft_fork(player, ram);
 		}
 	else if (ram[player->stok->pc] == 0x0d)
 		{
-			ft_putendl("lld");
+			// ft_putendl("lld");
 		lld(player->stok, ram);
 		}
 	else if (ram[player->stok->pc] == 0x0e)
 		{
-			ft_putendl("lldi");
+			// ft_putendl("lldi");
 		lldi(player->stok, ram);
 		}
 	else
 	{
 
 		player->stok->cycle++;
-		player->stok->pc = pluspc(player->stok->pc, 1);
+		player->stok->pc = (player->stok->pc + 1);
 	}
 	return(0);
 }

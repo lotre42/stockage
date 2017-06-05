@@ -45,22 +45,30 @@ int			infoplayer(t_player *player)
 	char *info;
 	int i;
 
-	if (player->sizetotal < 2191)
+	if (player->sizetotal < (COMMENT_LENGTH + PROG_NAME_LENGTH + 16))
+	{
+		ft_putendl("La taille du joueur n'est pas adequate pour participer à la partie");
 		return (0);
+	}
 	player->magicplayer = ft_strnew(4);
 	player->magicplayer = ft_memcpy(player->magicplayer, player->totalplayer, 4);
 	i = 4;
-	player->nameplayer = createbuf(player->totalplayer, i , 128);
-	i = i + 128;
+	player->nameplayer = createbuf(player->totalplayer, i , PROG_NAME_LENGTH);
+	i = i + PROG_NAME_LENGTH;
 	if (!verifnull(player->totalplayer, i))
 		return (0);
 	i = i + 4;
 	player->sizeplayer = ((player->totalplayer[i] << 24) & 0xff000000) |
 	   	((player->totalplayer[i + 1] << 16) & 0x00ff0000)
 	   	| ((player->totalplayer[i + 2] << 8) & 0x0000ff00) | (player->totalplayer[i + 3] & 0x000000ff);
+	if (player->sizeplayer > CHAMP_MAX_SIZE)
+	{
+		ft_putendl("La taille du joueur n'est pas adequate pour participer à la partie");
+		return (0);
+	}
 	i = i + 4;
-	player->comentplayer = createbuf(player->totalplayer, i, 2048);
-	i = i + 2048;
+	player->comentplayer = createbuf(player->totalplayer, i, COMMENT_LENGTH);
+	i = i + COMMENT_LENGTH;
 	if (!verifnull(player->totalplayer, i))
 		return (0);
 	i = i + 4;

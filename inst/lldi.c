@@ -24,59 +24,59 @@ void	lldi(t_stock *info, char *ram)
 	if (tabtype[1] == 3 && tabtype[2] == 2)
 	{
 		S = tabvalue[0] + tabvalue[1];
-		info->registre[tabvalue[2]] = (((ram[pluspc(info->pc, (S))] << 24) & 0xff000000)|
-		   	((ram[pluspc(info->pc, 1 + (S))] << 16) & 0x00ff0000) |
-		   	((ram[pluspc(info->pc, 2 + (S))] << 8) & 0x0000ff00) |
-		   	((ram[pluspc(info->pc, 3 + (S))]) & 0x000000ff));
-		info->pc = pluspc(info->pc, 6);
+		info->registre[tabvalue[2]] = (((ram[(info->pc + (S))] << 24) & 0xff000000)|
+		   	((ram[(info->pc + 1 + (S))] << 16) & 0x00ff0000) |
+		   	((ram[(info->pc + 2 + (S))] << 8) & 0x0000ff00) |
+		   	((ram[(info->pc + 3 + (S))]) & 0x000000ff));
+		info->pc = (info->pc + 6);
 	}
 	else if (tabtype[1] == 3 && tabtype[2] == 3)
 	{
 		S = tabvalue[0] + tabvalue[1];
-		info->registre[tabvalue[2]] = ((ram[pluspc(info->pc, (S))] << 24) |
-		   	((ram[pluspc(info->pc, 1 + (S))] << 16) & 0x00ffffff) |
-		   	((ram[pluspc(info->pc, 2 + (S))] << 8) & 0x0000ffff) |
-		   	((ram[pluspc(info->pc, 3 + (S))]) & 0x000000ff));
-		info->pc = pluspc(info->pc, 6);
+		info->registre[tabvalue[2]] = ((ram[(info->pc + (S))] << 24) |
+		   	((ram[(info->pc + 1 + (S))] << 16) & 0x00ffffff) |
+		   	((ram[(info->pc + 2 + (S))] << 8) & 0x0000ffff) |
+		   	((ram[(info->pc + 3 + (S))]) & 0x000000ff));
+		info->pc = (info->pc + 6);
 	}
 	else if (tabtype[1] == 1 && tabtype[2] == 3)
 	{
 		S = info->registre[tabvalue[0]] + tabvalue[1];
-		info->registre[tabvalue[2]] = (((ram[pluspc(info->pc, (S))] << 24) & 0xff000000)|
-		   	((ram[pluspc(info->pc, 1 + (S))] << 16) & 0x00ff0000) |
-		   	((ram[pluspc(info->pc, 2 + (S))] << 8) & 0x0000ff00) |
-		   	((ram[pluspc(info->pc, 3 + (S))]) & 0x000000ff));
-		info->pc = pluspc(info->pc, 5);
+		info->registre[tabvalue[2]] = (((ram[(info->pc + (S))] << 24) & 0xff000000)|
+		   	((ram[(info->pc + 1 + (S))] << 16) & 0x00ff0000) |
+		   	((ram[(info->pc + 2 + (S))] << 8) & 0x0000ff00) |
+		   	((ram[(info->pc + 3 + (S))]) & 0x000000ff));
+		info->pc = (info->pc + 5);
 	}
 	else if (tabtype[1] == 1 && tabtype[2] == 2)
 	{
 		S = info->registre[tabvalue[0]] + tabvalue[1];
-		info->registre[tabvalue[2]] = (((ram[pluspc(info->pc, (S))] << 24) & 0xff000000) |
-		   	((ram[pluspc(info->pc, 1 + (S))] << 16) & 0x00ff0000) |
-		   	((ram[pluspc(info->pc, 2 + (S))] << 8) & 0x0000ff00) |
-		   	((ram[pluspc(info->pc, 3 + (S))]) & 0x000000ff));
-		info->pc = pluspc(info->pc, 5);
+		info->registre[tabvalue[2]] = (((ram[(info->pc + (S))] << 24) & 0xff000000) |
+		   	((ram[(info->pc + 1 + (S))] << 16) & 0x00ff0000) |
+		   	((ram[(info->pc + 2 + (S))] << 8) & 0x0000ff00) |
+		   	((ram[(info->pc + 3 + (S))]) & 0x000000ff));
+		info->pc = (info->pc + 5);
 	}
 	else if (tabtype[1] == 2 && tabtype[2] == 1)
 	{
 		S = info->registre[tabvalue[1]] + tabvalue[0];
-		info->registre[tabvalue[2]] = (((ram[pluspc(info->pc, (S))] << 24) & 0xff000000) |
-		   	((ram[pluspc(info->pc, 1 + (S))] << 16) & 0x00ff0000) |
-		   	((ram[pluspc(info->pc, 2 + (S))] << 8) & 0x0000ff00) |
-		   	((ram[pluspc(info->pc, 3 + (S))]) & 0x000000ff));
-		info->pc = pluspc(info->pc, 5);
+		info->registre[tabvalue[2]] = (((ram[(info->pc + (S))] << 24) & 0xff000000) |
+		   	((ram[(info->pc + 1 + (S))] << 16) & 0x00ff0000) |
+		   	((ram[(info->pc + 2 + (S))] << 8) & 0x0000ff00) |
+		   	((ram[(info->pc + 3 + (S))]) & 0x000000ff));
+		info->pc = (info->pc + 5);
 	}
 	else if (tabtype[1] == 1 && tabtype[2] == 3)
 	{
 		S = tabvalue[0] + tabvalue[1];
-		info->registre[tabvalue[2]] = (((ram[pluspc(info->pc, (S))] << 24) & 0xff000000) |
-		   	((ram[pluspc(info->pc, 1 + (S))] << 16) & 0x00ff0000) |
-		   	((ram[pluspc(info->pc, 2 + (S))] << 8) & 0x0000ff00) |
-		   	((ram[pluspc(info->pc, 3 + (S))]) & 0x000000ff));
-		info->pc = pluspc(info->pc, 5);
+		info->registre[tabvalue[2]] = (((ram[(info->pc + (S))] << 24) & 0xff000000) |
+		   	((ram[(info->pc + 1 + (S))] << 16) & 0x00ff0000) |
+		   	((ram[(info->pc + 2 + (S))] << 8) & 0x0000ff00) |
+		   	((ram[(info->pc + 3 + (S))]) & 0x000000ff));
+		info->pc = (info->pc + 5);
 	}
 	else
-		info->pc = pluspc(info->pc, 1);
+		info->pc = (info->pc + 1);
 	if (info->carry == 0)
 		info->carry = 1;
 	else

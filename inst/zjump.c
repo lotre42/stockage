@@ -18,8 +18,8 @@ void	zjump(t_stock *info, char *ram)
 	
 	i = ((ram[pluspc(info->pc, 1)] << 8) &0xff00) | (ram[pluspc(info->pc, 2)] & 0x00ff);
 	if (info->carry == 1)
-		info->pc = pluspc(info->pc, (i % 512));
+		info->pc = (info->pc + (i % 512));
 	else
-		info->pc = pluspc(info->pc, 6);
+		info->pc = (info->pc + 6);
 }
 

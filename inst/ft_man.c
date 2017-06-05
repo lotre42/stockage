@@ -78,10 +78,9 @@ int  gestion(t_player *player, char *ram)
 {
 	t_live *live;
 
-	ft_initregistre(player);
 	live = ft_addlive(player);
 	gestioncycle(player, live, ram);
 	checkwinner(player, live);
-	displayplayer(ram, 4096);
+	//displayplayer(ram, 4096);
 	return (1);
 }

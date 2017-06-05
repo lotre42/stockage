@@ -21,7 +21,7 @@ void	ld(t_stock *info, char *ram)
 	tabvalue = ft_downvalue(info, tabtype, 0, ram);
 	if (tabtype[1] == 3)
 	{
-		info->registre[tabvalue[1]] = ((ram[pluspc(info->pc, (tabvalue[0] % 512))] << 24) & 0xff000000)
+		info->registre[tabvalue[1]] = ((ram[(info->pc + (tabvalue[0] % 512))] << 24) & 0xff000000)
 		   	| ((ram[info->pc + 1 + (tabvalue[0] % 512)] << 16) & 0x00ff0000)
 		   	| ((ram[info->pc + 2 + (tabvalue[0] % 512)] << 8) & 0x0000ff00)
 		    | (ram[info->pc + 3 + (tabvalue[0] % 512)] & 0x000000ff);
@@ -33,7 +33,7 @@ void	ld(t_stock *info, char *ram)
 		info->pc = info->pc + 7;
 	}
 	else
-		info->pc = pluspc(info->pc, 1);
+		info->pc = (info->pc + 1);
 	if (info->carry == 0)
 		info->carry = 1;
 	else

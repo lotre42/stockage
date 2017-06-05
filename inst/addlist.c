@@ -21,7 +21,8 @@ int		addlist(char *argv, t_player **add)
 	i = 0;
 	new = ft_initplay(new);
 	opencor(argv, new);
-	infoplayer(new);
+	if (!infoplayer(new))
+		return (0);
 	tmp = *add;
 	if (!tmp)
 		*add = new;
@@ -31,5 +32,5 @@ int		addlist(char *argv, t_player **add)
 			tmp = tmp->next;
 		tmp->next = new;
 	}
-	return (0);
+	return (1);
 }

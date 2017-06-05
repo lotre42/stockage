@@ -20,7 +20,7 @@ void		live(t_stock *info, t_live *live, char *ram)
 		   	| ((ram[pluspc(info->pc, 2)] << 16) & 0x00ff0000)
 		   	| ((ram[pluspc(info->pc, 3)] << 8) & 0x0000ff00)
 		    | (ram[pluspc(info->pc, 4)] & 0x000000ff);
-	info->pc = pluspc(info->pc, 5);
+	info->pc = (info->pc + 5);
 	while (live)
 	{
 		if (live->nbplayer == i)

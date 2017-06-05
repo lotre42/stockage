@@ -16,30 +16,30 @@ static void addid(t_stock *info, int *tabtype, int *tabvalue, char *ram)
 {
 	if (tabtype[1] == 3 && tabtype[2] == 3)
 	{
-		if (ram[pluspc(info->pc, (tabvalue[0] % 512))] && ram[pluspc(info->pc, (tabvalue[1] % 512))])
+		if (ram[(info->pc + (tabvalue[0] % 512))] && ram[(info->pc + (tabvalue[1] % 512))])
 			info->registre[tabvalue[2]] = 1;
 		else
 			info->registre[tabvalue[2]] = 0;
-		info->pc = pluspc(info->pc, 7);
+		info->pc = (info->pc + 7);
 	}
 	else if (tabtype[1] == 3 && tabtype[2] == 1)
 	{
-		if (ram[pluspc(info->pc, (tabvalue[0] % 512))] && info->registre[tabvalue[1]])
+		if (ram[(info->pc + (tabvalue[0] % 512))] && info->registre[tabvalue[1]])
 			info->registre[tabvalue[2]] = 1;
 		else
 			info->registre[tabvalue[2]] = 0;
-		info->pc = pluspc(info->pc, 6);
+		info->pc = (info->pc + 6);
 	}
 	else if (tabtype[1] == 3 && tabtype[2] == 2)
 	{
-		if (tabvalue[1] && ram[pluspc(info->pc, (tabvalue[0] % 512))])
+		if (tabvalue[1] && ram[(info->pc + (tabvalue[0] % 512))])
 			info->registre[tabvalue[2]] = 1;
 		else
 			info->registre[tabvalue[2]] = 0;
-		info->pc = pluspc(info->pc, 9);
+		info->pc = (info->pc + 9);
 	}
 	else
-		info->pc = pluspc(info->pc, 1);
+		info->pc = (info->pc + 1);
 }
 
 static void addr(t_stock *info, int *tabtype, int *tabvalue, char *ram)
@@ -50,7 +50,7 @@ static void addr(t_stock *info, int *tabtype, int *tabvalue, char *ram)
 			info->registre[tabvalue[2]] = 1;
 		else
 			info->registre[tabvalue[2]] = 0;
-		info->pc = pluspc(info->pc, 5);
+		info->pc = (info->pc + 5);
 	}	
 	else if (tabtype[1] == 1 && tabtype[2] == 2)
 	{
@@ -58,15 +58,15 @@ static void addr(t_stock *info, int *tabtype, int *tabvalue, char *ram)
 			info->registre[tabvalue[2]] = 1;
 		else
 			info->registre[tabvalue[2]] = 0;
-		info->pc = pluspc(info->pc, 8);
+		info->pc = (info->pc + 8);
 	}	
 	else if (tabtype[1] == 1 && tabtype[2] == 3)
 	{
-		if (info->registre[tabvalue[0]] && ram[pluspc(info->pc, (tabvalue[1] % 512))])
+		if (info->registre[tabvalue[0]] && ram[(info->pc + (tabvalue[1] % 512))])
 			info->registre[tabvalue[2]] = 1;
 		else
 			info->registre[tabvalue[2]] = 0;
-		info->pc = pluspc(info->pc, 6);
+		info->pc = (info->pc + 6);
 	}
 	else
 		addid(info, tabtype, tabvalue, ram);	
@@ -80,7 +80,7 @@ static void adddi(t_stock *info, int *tabtype, int *tabvalue, char *ram)
 			info->registre[tabvalue[2]] = 1;
 		else
 			info->registre[tabvalue[2]] = 0;
-		info->pc = pluspc(info->pc, 11);
+		info->pc = (info->pc + 11);
 	}	
 	else if (tabtype[1] == 2 && tabtype[2] == 1)
 	{
@@ -88,15 +88,15 @@ static void adddi(t_stock *info, int *tabtype, int *tabvalue, char *ram)
 			info->registre[tabvalue[2]] = 1;
 		else
 			info->registre[tabvalue[2]] = 0;
-		info->pc = pluspc(info->pc, 8);
+		info->pc = (info->pc + 8);
 	}	
 	else if (tabtype[1] == 2 && tabtype[2] == 3)
 	{
-		if (tabvalue[0] && ram[pluspc(info->pc, (tabvalue[1] % 512))])
+		if (tabvalue[0] && ram[(info->pc + (tabvalue[1] % 512))])
 			info->registre[tabvalue[2]] = 1;
 		else
 			info->registre[tabvalue[2]] = 0;
-		info->pc = pluspc(info->pc, 9);
+		info->pc = (info->pc + 9);
 	}
 	else
 		addr(info, tabtype, tabvalue, ram);	

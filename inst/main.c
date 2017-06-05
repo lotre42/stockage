@@ -60,12 +60,15 @@ int main(int argc, char **argv)
 	player = NULL;
 	 while (i < argc)
 	 {
-		 addlist(argv[i], &player);
+		 if (!addlist(argv[i], &player))
+		 	return (0);
 		 i++;
 	 }
 	// ft_putendl("nn");
-	 ram = createram(player, argc - 1);
+	 if (!(ram = createram(player, argc - 1)))
+	 	return (0);
 	 ft_initplayer(player, ram);
+	 ft_initregistre(player);
 	 gestion(player, ram);
 	//ft_core(player, ram);
 //	printf("%d", info.registre[3]);

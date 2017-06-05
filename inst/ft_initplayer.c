@@ -38,7 +38,7 @@ void		ft_initplayer(t_player *player, char *ram)
 	{
 		player->stok = malloc(sizeof(t_stock));
 		player->stok->carry = 0;
-		player->stok->registre = ft_inittab(16);
+		player->stok->registre = ft_inittab(REG_NUMBER);
 		player->stok->pc = pc * i;
 		player->stok->cycle = 0;
 		player->stok->kill = 0;

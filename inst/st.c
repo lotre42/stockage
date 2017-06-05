@@ -22,15 +22,15 @@ void	st(t_stock *info, char *ram)
 	tabvalue = ft_downvalue(info, tabtype, 0, ram);
 	if (tabtype[2] == 3)
 	{
-		pc = pluspc(info->pc, (tabvalue[1] % 512));
+		pc = (info->pc + (tabvalue[1] % 512));
 		cpyint(ram, reverseint(info->registre[tabvalue[0]]), pc);
 		//*(unsigned int*)((void*)((ram + pc))) = info->registre[tabvalue[0]];
-		info->pc = pluspc(info->pc, 5);
+		info->pc = (info->pc + 5);
 	}
 	else
 	{
 		info->registre[tabvalue[1]] = info->registre[tabvalue[0]];
-		info->pc = pluspc(info->pc, 4);
+		info->pc = (info->pc + 4);
 	}
 }
 

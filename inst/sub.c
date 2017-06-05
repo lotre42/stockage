@@ -21,7 +21,7 @@ void	sub(t_stock *info, char *ram)
 	tabvalue = ft_downvalue(info, tabtype, 0, ram);
 	info->registre[tabvalue[2]] = info->registre[tabvalue[0]] -
 	   	info->registre[tabvalue[1]];
-	info->pc = pluspc(info->pc, 5);
+	info->pc = (info->pc + 5);
 	if (info->registre[tabvalue[2]] == 0)
 		info->carry = 1;
 	else

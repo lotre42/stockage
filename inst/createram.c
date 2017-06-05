@@ -32,8 +32,12 @@ char		*createram(t_player *player, int nb)
 	int i;
 
 	i = 1;
-	x = 4096 / nb;
-	ram = ft_strnew(4096);
+	if (nb > MAX_PLAYERS)
+	{
+		return (0);
+	}
+	x = MEM_SIZE / nb;
+	ram = ft_strnew(MEM_SIZE);
 	cpyinram(ram, player, 0);
 	nb--;
 	while (nb > 0)
