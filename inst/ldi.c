@@ -22,8 +22,7 @@ void	ldi(t_stock *info, char *ram)
 	tabvalue = ft_downvalue(info, tabtype, 1, ram);
 	if (tabtype[1] == 3 && tabtype[2] == 2)
 	{
-		S = ((ram[pluspc(info->pc, (tabvalue[0] % 512))] << 8) & 0xff00)|
-		   	((ram[pluspc(info->pc, 1 + (tabvalue[0] % 512))] & 0x00ff)) + tabvalue[1];
+		S = tabvalue[0] + tabvalue[1];
 		info->registre[tabvalue[2]] = (((ram[pluspc(info->pc, (S % 512))] << 24) & 0xff000000)|
 		   	((ram[pluspc(info->pc, 1 + (S % 512))] << 16) & 0x00ff0000) |
 		   	((ram[pluspc(info->pc, 2 + (S % 512))] << 8) & 0x0000ff00) |
@@ -32,8 +31,7 @@ void	ldi(t_stock *info, char *ram)
 	}
 	else if (tabtype[1] == 3 && tabtype[2] == 3)
 	{
-		S = ((ram[pluspc(info->pc, (tabvalue[0] % 512))] << 8) & 0xff00) |
-		   	((ram[pluspc(info->pc, 1 + (tabvalue[0] % 512))] & 0x00ff)) + ram[pluspc(info->pc, (tabvalue[1] % 512))];
+		S = tabvalue[0] + tabvalue[1];
 		info->registre[tabvalue[2]] = ((ram[pluspc(info->pc, (S % 512))] << 24) |
 		   	((ram[pluspc(info->pc, 1 + (S % 512))] << 16) & 0x00ffffff) |
 		   	((ram[pluspc(info->pc, 2 + (S % 512))] << 8) & 0x0000ffff) |
@@ -42,7 +40,7 @@ void	ldi(t_stock *info, char *ram)
 	}
 	else if (tabtype[1] == 1 && tabtype[2] == 3)
 	{
-		S = info->registre[tabvalue[0]] + ram[pluspc(info->pc, (tabvalue[1] % 512))];
+		S = info->registre[tabvalue[0]] + tabvalue[1];
 		info->registre[tabvalue[2]] = (((ram[pluspc(info->pc, (S % 512))] << 24) & 0xff000000)|
 		   	((ram[pluspc(info->pc, 1 + (S % 512))] << 16) & 0x00ff0000) |
 		   	((ram[pluspc(info->pc, 2 + (S % 512))] << 8) & 0x0000ff00) |
@@ -69,7 +67,7 @@ void	ldi(t_stock *info, char *ram)
 	}
 	else if (tabtype[1] == 1 && tabtype[2] == 3)
 	{
-		S = tabvalue[0] + ram[pluspc(info->pc, (tabvalue[1] % 512))];
+		S = tabvalue[0] + tabvalue[1];
 		info->registre[tabvalue[2]] = (((ram[pluspc(info->pc, (S % 512))] << 24) & 0xff000000) |
 		   	((ram[pluspc(info->pc, 1 + (S % 512))] << 16) & 0x00ff0000) |
 		   	((ram[pluspc(info->pc, 2 + (S % 512))] << 8) & 0x0000ff00) |

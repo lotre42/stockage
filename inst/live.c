@@ -21,11 +21,13 @@ void		live(t_stock *info, t_live *live, char *ram)
 		   	| ((ram[pluspc(info->pc, 3)] << 8) & 0x0000ff00)
 		    | (ram[pluspc(info->pc, 4)] & 0x000000ff);
 	info->pc = pluspc(info->pc, 5);
-	live->lastlive = i;
 	while (live)
 	{
 		if (live->nbplayer == i)
+		{
 			live->nbliveplayer = live->nbliveplayer + 1;
+			live->lastlive = i;
+		}
 		live = live->next;
 	}
 }

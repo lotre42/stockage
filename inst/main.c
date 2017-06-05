@@ -58,15 +58,16 @@ int main(int argc, char **argv)
 	info.carry = 0;
 	*/
 	player = NULL;
-	while (i < argc)
-	{
-		addlist(argv[i], &player);
-		i++;
-	}
-	ram = createram(player, argc - 1);
-	ft_initplayer(player, ram);
-	gestion(player);
-//	ft_core(player, ram);
+	 while (i < argc)
+	 {
+		 addlist(argv[i], &player);
+		 i++;
+	 }
+	// ft_putendl("nn");
+	 ram = createram(player, argc - 1);
+	 ft_initplayer(player, ram);
+	 gestion(player, ram);
+	//ft_core(player, ram);
 //	printf("%d", info.registre[3]);
 	return (0);
 }

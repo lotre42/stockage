@@ -41,7 +41,7 @@ void	checkwinner(t_player *player, t_live *live)
 	}
 	else
 	{
-		ft_putnbr(live->lastlive);
+		//ft_putnbr(live->lastlive);
 		while (tmp && (live->lastlive != tmp->stok->nbplayer))
 		{
 			tmp = tmp->next;

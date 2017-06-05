@@ -12,20 +12,17 @@
 
 #include "../includes/corewar.h"
 
-static int	ft_dead(t_player *player, t_live *live, int *cycle)
+static int	ft_dead(t_player *player, t_live *live, int *cycle, int *cycletodie, int *x)
 {
-	int x;
-
-	x = 0;
-	if (*cycle >= CYCLE_TO_DIE)
+	if (*cycle >= *cycletodie)
 			{
-				if (checkdelta(live) || x >= 10)
+				if (checkdelta(live) || *x >= 10)
 				{
-					//CYCLE_TO_DIE = CYCLE_TO_DIE - CYCLE_DELTA;
-					x = 0;
+					*cycletodie = *cycletodie - CYCLE_DELTA;
+					*x = 0;
 				}
 				else
-					x++;
+					*x = *x + 1;
 				if (checkdead(live))
 				{
 					killplayer(player, live);
@@ -43,11 +40,16 @@ static int	ft_dead(t_player *player, t_live *live, int *cycle)
 static void gestioncycle(t_player *player, t_live *live, char *ram)
 {
 	int cycle;
+	int cycletodie;
 	t_player *tmp;
+	int x;
 
 	tmp = player;
 	cycle = 0;
-	while (cycle < CYCLE_TO_DIE)
+	cycletodie = CYCLE_TO_DIE;
+
+	x = 0;
+	while (cycle < cycletodie)
 	{
 		if (player->c == 0)
 		{
@@ -66,7 +68,7 @@ static void gestioncycle(t_player *player, t_live *live, char *ram)
 		{
 			player = tmp;
 			cycle++;
-			if (!ft_dead(player, live, &cycle))
+			if (!ft_dead(player, live, &cycle, &cycletodie, &x))
 				break ;
 		}
 	}
@@ -80,5 +82,6 @@ int  gestion(t_player *player, char *ram)
 	live = ft_addlive(player);
 	gestioncycle(player, live, ram);
 	checkwinner(player, live);
+	displayplayer(ram, 4096);
 	return (1);
 }
