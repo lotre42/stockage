@@ -12,7 +12,7 @@
 
 #include "../includes/corewar.h"
 
-int *ft_inittab(int x)
+unsigned int *ft_inittab(int x)
 {
 	unsigned int *tab;
 	int i;

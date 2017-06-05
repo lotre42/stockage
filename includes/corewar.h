@@ -25,6 +25,15 @@
 #define CYCLE_DELTA				50
 #define NBR_LIVE				21
 #define MAX_CHECKS				10
+#define MAX_ARGS_NUMBER			4
+#define MAX_PLAYERS				4
+#define MEM_SIZE				(4*1024)
+#define IDX_MOD					(MEM_SIZE / 8)
+#define CHAMP_MAX_SIZE			(MEM_SIZE / 6)
+# define PROG_NAME_LENGTH		(128)
+# define COMMENT_LENGTH			(2048)
+# define COREWAR_EXEC_MAGIC		0xea83f3
+#define REG_NUMBER				16
 
 typedef struct			s_stock
 {
@@ -63,7 +72,7 @@ typedef struct			s_player
 
 int						pluspc(int pc, int i);
 void					checkwinner(t_player *player, t_live *live);
-int						searchfunction(t_player *player, t_live *liv, char *ram);
+int						searchfunction(t_player *player, t_live *live, char *ram);
 t_live 					*ft_addlive(t_player *player);
 void					ft_initregistre(t_player *player);
 void					ld(t_stock *info, char *ram);
@@ -74,7 +83,7 @@ void					add(t_stock *info, char *ram);
 void					add(t_stock *info, char *ram);
 void					ft_and(t_stock *info, char *ram);
 int						*ft_downtype(t_stock *info, char *ram);
-int						*ft_inittab(int x);
+unsigned int			*ft_inittab(int x);
 void					or(t_stock *info, char *ram);
 void					st(t_stock *info, char *ram);
 void					sti(t_stock *info, char *ram);
@@ -88,18 +97,19 @@ char					*createram(t_player *player, int nb);
 void					diplayplayer(char *str, int i);
 void					ft_initplayer(t_player *player, char *ram);
 int						ft_core(t_player *player, char *ram);
-void					live(t_stock *info, t_live *live, char *ram);
+void					ft_live(t_stock *info, t_live *live, char *ram);
 t_player				*ft_initplay(t_player *player);
 int						nbplayer(t_player *player);
 void					nbofcycle(t_player *player, char *ram);
 char					*reverseint(unsigned nb);
-void					intcycle(t_live *live);
+void					initcycle(t_live *live);
 int						checkdead(t_live *live);
 int						checkdelta(t_live *live);
 int						ft_fork(t_player *player, char *ram);
 int						checkkill(t_player *player);
 void					cpyint(char *ram, char *src, int pc);
 void					killplayer(t_player *player, t_live *live);
+int  					gestion(t_player *player, char *ram);
 int						*ft_downvalue(t_stock *info, int *tabtype, int x, char *ram);
 
 #endif

@@ -12,15 +12,16 @@
 
 #include "../includes/corewar.h"
 
-int		searchfunction(t_player *player, t_live *liv, char *ram)
+int		searchfunction(t_player *player, t_live *live, char *ram)
 {
 	//printf("[%hhx]", (player->stok->ram[player->stok->pc]));
 	//displayplayer(player->stok->ram, 2059);
 	if (ram[player->stok->pc] == 0x01)
 	{
 		// ft_putendl("live");
-		liv->nblive++;
-		live(player->stok, liv,ram);
+		live->nblive++;
+		ft_live(player->stok, live, ram);
+
 	}
 	else if (ram[player->stok->pc] == 0x02)
 	{
@@ -84,7 +85,7 @@ int		searchfunction(t_player *player, t_live *liv, char *ram)
 		}
 	else if (ram[player->stok->pc] == 0x0e)
 		{
-			// ft_putendl("lldi");
+	 		// ft_putendl("lldi");
 		lldi(player->stok, ram);
 		}
 	else
@@ -96,7 +97,7 @@ int		searchfunction(t_player *player, t_live *liv, char *ram)
 	return(0);
 }
 
-static int	ft_addplayerinlive(int nbplayer, t_live **live)
+int	ft_addplayerinlive(int nbplayer, t_live **live)
 {
 	t_live *new;
 	t_live *tmp;

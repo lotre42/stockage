@@ -16,7 +16,7 @@ static int	ft_dead(t_player *player, t_live *live, int *cycle, int *cycletodie, 
 {
 	if (*cycle >= *cycletodie)
 			{
-				if (checkdelta(live) || *x >= 10)
+				if (checkdelta(live) || *x >= MAX_CHECKS)
 				{
 					*cycletodie = *cycletodie - CYCLE_DELTA;
 					*x = 0;
@@ -47,7 +47,6 @@ static void gestioncycle(t_player *player, t_live *live, char *ram)
 	tmp = player;
 	cycle = 0;
 	cycletodie = CYCLE_TO_DIE;
-
 	x = 0;
 	while (cycle < cycletodie)
 	{
@@ -78,9 +77,10 @@ int  gestion(t_player *player, char *ram)
 {
 	t_live *live;
 
+
 	live = ft_addlive(player);
 	gestioncycle(player, live, ram);
 	checkwinner(player, live);
-	//displayplayer(ram, 4096);
+	displayplayer(ram, 4096);
 	return (1);
 }

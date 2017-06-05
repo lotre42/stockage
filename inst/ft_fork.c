@@ -64,4 +64,5 @@ int			ft_fork(t_player *player, char *ram)
 		tmp = tmp->next;
 	tmp->next = new;
 	player->stok->pc = (player->stok->pc + 3);
+	return (1);
 }

@@ -17,7 +17,7 @@ static void		ft_nbofplayer(t_player *player, int nb)
 	player->stok->quantity = nb;
 }
 
-static int	ft_addplayerinlive(int nbplayer, t_live **live)
+static int	ft_addplayerinlive(int nb, t_live **live)
 {
 	t_live *new;
 	t_live *tmp;
@@ -26,7 +26,7 @@ static int	ft_addplayerinlive(int nbplayer, t_live **live)
 	i = 0;
 	if (!(new = malloc(sizeof(t_live))))
 		return (0);
-	new->nbplayer = nbplayer;
+	new->nbplayer = nb;
 	new->nblive = 0;
 	new->nbliveplayer = 0;
 	new->dead = 0;
@@ -56,7 +56,7 @@ t_live *ft_addlive(t_player *player)
 	while (player)
 	{
 		player->stok->nbplayer = player->stok->registre[1];
-		ft_addplayerinlive(player->stok->registre[1], &live);
+		ft_addplayerinlive(player->stok->nbplayer, &live);
 		player = player->next;
 		nb++;
 	}

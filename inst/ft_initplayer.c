@@ -43,7 +43,6 @@ void		ft_initplayer(t_player *player, char *ram)
 		player->stok->cycle = 0;
 		player->stok->kill = 0;
 		player->stok->nbplayer = 0;
-		player->stok->quantity;
 		i++;
 		player = player->next;
 	}

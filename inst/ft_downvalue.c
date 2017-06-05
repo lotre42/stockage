@@ -14,7 +14,7 @@
 
 int		*ft_downvalue(t_stock *info, int *tabtype, int x, char *ram)
 {
-	int *tabvalue;
+	unsigned int *tabvalue;
 	int index;
 	int i;
 

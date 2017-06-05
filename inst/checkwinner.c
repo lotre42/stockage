@@ -21,17 +21,19 @@ void	checkwinner(t_player *player, t_live *live)
 	x = 0;
 	i = 0;
 	tmp = player;
-	while (x < tmp->stok->quantity)
+	while (player && x < tmp->stok->quantity)
 	{
 		if (player->stok->kill == 0)
+		{
 			i++;
+		}
 		player = player->next;
 		x++;
 	}
 	x = 0;
 	if (i == 1)
 	{
-		while (x < tmp->stok->quantity)
+		while (tmp && x < tmp->stok->quantity)
 		{
 			if (tmp->stok->kill == 0)
 				ft_putendl(tmp->nameplayer);

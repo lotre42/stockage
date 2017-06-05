@@ -12,9 +12,9 @@
 
 #include "../includes/corewar.h"
 
-static int	*ft_numberofparam(int ocp)
+static unsigned int	*ft_numberofparam(int ocp)
 {
-	int *tabparam;
+	unsigned int *tabparam;
 
 	if ((ocp & 0b00001111))
 	{
@@ -36,7 +36,7 @@ static int	*ft_numberofparam(int ocp)
 
 int			*ft_downtype(t_stock *info, char *ram)
 {
-	int *tabparam;
+	unsigned int *tabparam;
 	int i;
 
 	if (ram[info->pc] == 0x01 || ram[info->pc] == 0x09 ||

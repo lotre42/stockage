@@ -19,8 +19,7 @@ int		checkkill(t_player *player)
 
 	i = 0;
 	x = 0;
-
-	while (x < player->stok->quantity)
+	while (player && x < player->stok->quantity)
 	{
 		if (!player->stok->kill)
 		{
@@ -30,7 +29,9 @@ int		checkkill(t_player *player)
 		x++;
 	}
 	if (i <= 1)
+	{
 		return (1);
+	}
 	else
 		return (0);
 }
@@ -50,6 +51,7 @@ void	killplayer(t_player *player, t_live *live)
 			}
 			if (player)
 			{
+				ft_putendl(player->nameplayer);
 				player->stok->kill = 1;
 			}
 		}

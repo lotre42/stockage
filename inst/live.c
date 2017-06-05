@@ -12,7 +12,7 @@
 
 #include "../includes/corewar.h"
 
-void		live(t_stock *info, t_live *live, char *ram)
+void		ft_live(t_stock *info, t_live *live, char *ram)
 {
 	int i;
  
