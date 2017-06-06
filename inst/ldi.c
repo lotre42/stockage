@@ -20,58 +20,28 @@ void	ldi(t_stock *info, char *ram)
 
 	tabtype = ft_downtype(info, ram);
 	tabvalue = ft_downvalue(info, tabtype, 1, ram);
-	if (tabtype[1] == 3 && tabtype[2] == 2)
+	if ((tabtype[1] == 3 && tabtype[2] == 2) || (tabtype[1] == 3 && tabtype[2] == 3) || (tabtype[1] == 1 && tabtype[2] == 3))
 	{
 		S = tabvalue[0] + tabvalue[1];
-		info->registre[tabvalue[2]] = (((ram[(info->pc + (S % 512))] << 24) & 0xff000000)|
-		   	((ram[(info->pc + 1 + (S % 512))] << 16) & 0x00ff0000) |
-		   	((ram[(info->pc + 2 + (S % 512))] << 8) & 0x0000ff00) |
-		   	((ram[(info->pc + 3 + (S % 512))]) & 0x000000ff));
-		info->pc = (info->pc + 6);
-	}
-	else if (tabtype[1] == 3 && tabtype[2] == 3)
-	{
-		S = tabvalue[0] + tabvalue[1];
-		info->registre[tabvalue[2]] = ((ram[(info->pc + (S % 512))] << 24) |
-		   	((ram[(info->pc + 1 + (S % 512))] << 16) & 0x00ffffff) |
-		   	((ram[(info->pc + 2 + (S % 512))] << 8) & 0x0000ffff) |
-		   	((ram[(info->pc + 3 + (S % 512))]) & 0x000000ff));
+		info->registre[tabvalue[2]] = loadint(ram, info->pc + (S % 512));
 		info->pc = (info->pc + 6);
 	}
 	else if (tabtype[1] == 1 && tabtype[2] == 3)
 	{
 		S = info->registre[tabvalue[0]] + tabvalue[1];
-		info->registre[tabvalue[2]] = (((ram[(info->pc + (S % 512))] << 24) & 0xff000000)|
-		   	((ram[(info->pc + 1 + (S % 512))] << 16) & 0x00ff0000) |
-		   	((ram[(info->pc + 2 + (S % 512))] << 8) & 0x0000ff00) |
-		   	((ram[(info->pc + 3 + (S % 512))]) & 0x000000ff));
+		info->registre[tabvalue[2]] = loadint(ram, info->pc + (S % 512));
 		info->pc = (info->pc + 5);
 	}
 	else if (tabtype[1] == 1 && tabtype[2] == 2)
 	{
 		S = info->registre[tabvalue[0]] + tabvalue[1];
-		info->registre[tabvalue[2]] = (((ram[(info->pc + (S % 512))] << 24) & 0xff000000) |
-		   	((ram[(info->pc + 1 + (S % 512))] << 16) & 0x00ff0000) |
-		   	((ram[(info->pc + 2 + (S % 512))] << 8) & 0x0000ff00) |
-		   	((ram[(info->pc + 3 + (S % 512))]) & 0x000000ff));
+		info->registre[tabvalue[2]] = loadint(ram, info->pc + (S % 512));
 		info->pc = (info->pc + 5);
 	}
 	else if (tabtype[1] == 2 && tabtype[2] == 1)
 	{
 		S = info->registre[tabvalue[1]] + tabvalue[0];
-		info->registre[tabvalue[2]] = (((ram[(info->pc + (S % 512))] << 24) & 0xff000000) |
-		   	((ram[(info->pc + 1 + (S % 512))] << 16) & 0x00ff0000) |
-		   	((ram[(info->pc + 2 + (S % 512))] << 8) & 0x0000ff00) |
-		   	((ram[(info->pc + 3 + (S % 512))]) & 0x000000ff));
-		info->pc = (info->pc + 5);
-	}
-	else if (tabtype[1] == 1 && tabtype[2] == 3)
-	{
-		S = tabvalue[0] + tabvalue[1];
-		info->registre[tabvalue[2]] = (((ram[(info->pc + (S % 512))] << 24) & 0xff000000) |
-		   	((ram[(info->pc + 1 + (S % 512))] << 16) & 0x00ff0000) |
-		   	((ram[(info->pc + 2 + (S % 512))] << 8) & 0x0000ff00) |
-		   	((ram[(info->pc + 3 + (S % 512))]) & 0x000000ff));
+		info->registre[tabvalue[2]] = loadint(ram, info->pc + (S % 512));
 		info->pc = (info->pc + 5);
 	}
 	else

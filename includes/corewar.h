@@ -111,5 +111,6 @@ void					cpyint(char *ram, char *src, int pc);
 void					killplayer(t_player *player, t_live *live);
 int  					gestion(t_player *player, char *ram);
 int						*ft_downvalue(t_stock *info, int *tabtype, int x, char *ram);
+unsigned int	 		loadint(char *ram, int pc);
 
 #endif

@@ -14,12 +14,9 @@
 
 void		ft_live(t_stock *info, t_live *live, char *ram)
 {
-	int i;
+	unsigned int i;
  
-	i = ((ram[pluspc(info->pc, 1)] << 24) & 0xff000000)
-		   	| ((ram[pluspc(info->pc, 2)] << 16) & 0x00ff0000)
-		   	| ((ram[pluspc(info->pc, 3)] << 8) & 0x0000ff00)
-		    | (ram[pluspc(info->pc, 4)] & 0x000000ff);
+	i = loadint(ram, info->pc + 1);
 	info->pc = (info->pc + 5);
 	while (live)
 	{
