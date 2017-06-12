@@ -1,0 +1,59 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   call_fonction.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/06/09 21:07:34 by kahantar          #+#    #+#             */
+/*   Updated: 2017/06/09 21:07:35 by kahantar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../includes/vm.h"
+
+int		call_fonction(unsigned char *ram, t_process *process, t_live *live, unsigned int *nbplayer)
+{
+	ft_putnbr(ram[process->pc]);
+	ft_putstr("   ");
+	if (ram[process->pc] == 0x01)
+	{
+		live->nblive++;
+		ft_live(process, live, ram, nbplayer);
+	}
+	else if (ram[process->pc] == 0x02)
+		ld(process, ram);
+	else if (ram[process->pc] == 0x03)
+			st(process, ram);
+	else if (ram[process->pc] == 0x04)
+			add(process, ram);
+	else if (ram[process->pc] == 0x05)
+			sub(process, ram);
+	else if (ram[process->pc] == 0x06)
+			ft_and(process, ram);
+	else if (ram[process->pc] == 0x07)
+			or(process, ram);
+	else if (ram[process->pc] == 0x08)
+		xor(process, ram);
+	else if (ram[process->pc] == 0x09)
+		zjump(process, ram);
+	else if (ram[process->pc] == 0x0a)
+		ldi(process, ram);
+	else if (ram[process->pc] == 0x0b)
+		sti(process, ram);
+	else if (ram[process->pc] == 0x0c)
+		ft_fork(process, ram);
+	else if (ram[process->pc] == 0x0d)
+		lld(process, ram);
+	else if (ram[process->pc] == 0x0e)
+		lldi(process, ram);
+	else if (ram[process->pc] == 0x0f)
+		lfork(process, ram);
+	else
+	{
+		process->nbcycle++;
+		process->pc = mask_pc(process->pc, 1);
+	}
+	process->tmp = 0;
+	return(0);
+}
