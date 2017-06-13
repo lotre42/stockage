@@ -42,13 +42,10 @@ static void		check_dead(t_process *process)
 		else if (tmp->live == 0 && i == 1 && process)
 		{
 			tmp2 = process->next;
-		// printf("entree %p\n", tmp2);
 		if (tmp2 != NULL)
 			process = (process->next)->next;
 		else
 			process->next = NULL;
-			// printf("sortie %d\n", i);
-			//free(tmp2);
 		}
 		else if(tmp->live == 0 && i == 0 && process)
 		{
@@ -78,9 +75,11 @@ static void 		zero_process(t_process *process, t_live *live)
 		process = process->next;
 		i++;
 	}
+	if (i < 2)
+		ft_putendl("bonjour");
 	// ft_putchar('\n');
-	if (i == 0)
-		printf("LOLO%x", live->lastlive);
+	// if (i == 0)
+		// printf("%x", live->lastlive);
 
 }
 
@@ -96,7 +95,7 @@ static void			check_live_dead(t_process *process, int *cycletodie,
 	else
 		*nbchecks = *nbchecks + 1;
 	// check_dead(process);
-	zero_process(process, live);
+	// zero_process(process, live);
 }
 
 static void		check_winner(t_process *process, t_live *live)
@@ -138,7 +137,7 @@ int		core(unsigned char *ram, t_process *process, unsigned int *numberplayer)
 		{
 			if (process->tmp == 0)
 				nb_of_cycle(process, ram);
-			if (process->nbcycle == 0)
+			if (process->nbcycle == 0 && process->tmp == 1)
 				call_fonction(ram, process, live, numberplayer);
 			else
 				process->nbcycle--;
@@ -148,6 +147,7 @@ int		core(unsigned char *ram, t_process *process, unsigned int *numberplayer)
 		process = tmp;
 		if (cycle == cycletodie)
 		{
+			ft_putnbr(cycletodie);
 			check_live_dead(process, &cycletodie, live, &nbchecks);
 			cycle = 0;
 		}

@@ -14,8 +14,8 @@
 
 int		call_fonction(unsigned char *ram, t_process *process, t_live *live, unsigned int *nbplayer)
 {
-	ft_putnbr(ram[process->pc]);
-	ft_putstr("   ");
+	// ft_putnbr(ram[process->pc]);
+	// ft_putstr(" ");
 	if (ram[process->pc] == 0x01)
 	{
 		live->nblive++;
@@ -29,8 +29,8 @@ int		call_fonction(unsigned char *ram, t_process *process, t_live *live, unsigne
 			add(process, ram);
 	else if (ram[process->pc] == 0x05)
 			sub(process, ram);
-	else if (ram[process->pc] == 0x06)
-			ft_and(process, ram);
+	// else if (ram[process->pc] == 0x06)
+	// 		ft_and(process, ram);
 	else if (ram[process->pc] == 0x07)
 			or(process, ram);
 	else if (ram[process->pc] == 0x08)
@@ -50,10 +50,7 @@ int		call_fonction(unsigned char *ram, t_process *process, t_live *live, unsigne
 	else if (ram[process->pc] == 0x0f)
 		lfork(process, ram);
 	else
-	{
-		process->nbcycle++;
 		process->pc = mask_pc(process->pc, 1);
-	}
 	process->tmp = 0;
 	return(0);
 }

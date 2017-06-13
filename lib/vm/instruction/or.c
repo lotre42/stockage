@@ -102,11 +102,34 @@ static void ordi(t_process *process, unsigned int *tabtype, unsigned int *tabval
 		orr(process, tabtype, tabvalue, ram);	
 }
 
+static void	pluspc(unsigned int *tabtype, t_process *process)
+{
+	if ((tabtype[1] == 2 && tabtype[2] == 3) || (tabtype[1] == 3 && tabtype[2] == 2))
+		process->pc = mask_pc(process->pc, 9);
+	else if ((tabtype[1] == 2 && tabtype[2] == 1) && (tabtype[1] == 1 && tabtype[2] == 2))
+		process->pc = mask_pc(process->pc, 8);
+	else if ((tabtype[1] == 2 && tabtype[2] == 2))
+		process->pc = mask_pc(process->pc, 11);
+	else if ((tabtype[1] == 3 && tabtype[2] == 1) && (tabtype[1] == 1 && tabtype[2] == 3))
+		process->pc = mask_pc(process->pc, 6);
+	else if (tabtype[1] == 1 && tabtype[2] == 1)
+		process->pc = mask_pc(process->pc, 5);
+	else if (tabtype[1] == 3 && tabtype[2] == 3)
+		process->pc = mask_pc(process->pc, 5);
+	else
+		process->pc = mask_pc(process->pc, 1);
+}
+
 void	or(t_process *process, unsigned char *ram)
 {
 	unsigned int *tabtype;
 	unsigned int *tabvalue;
 
+	if (!check_nb_reg(tabvalue[2]))
+	{
+		pluspc(tabtype, process);
+		return ;
+	}
 	tabtype = ft_downtype(process, ram);
 	tabvalue = ft_downvalue(process, tabtype, 0, ram);
 	ordi(process, tabtype, tabvalue, ram);

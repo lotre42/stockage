@@ -21,12 +21,14 @@ void	lld(t_process *process, unsigned char *ram)
 	tabvalue = ft_downvalue(process, tabtype, 0, ram);
 	if (tabtype[1] == 3)
 	{
-		process->registre[tabvalue[1] - 1] = loadint(ram, process->pc + tabvalue[0]);
+		if (check_nb_reg(tabvalue[1]))
+			process->registre[tabvalue[1] - 1] = loadint(ram, process->pc + tabvalue[0]);
 		process->pc = mask_pc(process->pc, 5);
 	}
 	else if (tabtype[1] == 2)
 	{
-		process->registre[tabvalue[1] - 1] = tabvalue[0];
+		if (check_nb_reg(tabvalue[1]))
+			process->registre[tabvalue[1] - 1] = tabvalue[0];
 		process->pc = mask_pc(process->pc, 7);
 	}
 	else

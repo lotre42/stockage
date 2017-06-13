@@ -17,7 +17,7 @@ void	zjump(t_process *process, unsigned char *ram)
 	short i;
 	
 	i = ((ram[mask_pc(process->pc, 1)] << 8) & 0xff00) | (ram[mask_pc(process->pc, 2)] & 0x00ff);
-	if (process->carry == 1)
+	if (process->carry == 1 && i != 0)
 		process->pc = mask_pc(process->pc, (i % 512));
 	else
 		process->pc = mask_pc(process->pc, 3);

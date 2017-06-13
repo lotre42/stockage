@@ -20,31 +20,46 @@ void	ldi(t_process *process, unsigned char *ram)
 
 	tabtype = ft_downtype(process, ram);
 	tabvalue = ft_downvalue(process, tabtype, 1, ram);
-	if ((tabtype[1] == 3 && tabtype[2] == 2) || (tabtype[1] == 3 && tabtype[2] == 3) || (tabtype[1] == 2 && tabtype[2] == 3))
+	if ((tabtype[1] == 3 && tabtype[2] == 2) || (tabtype[1] == 3 && tabtype[2] == 3) || (tabtype[1] == 1 && tabtype[2] == 3))
 	{
-		S = tabvalue[0] + tabvalue[1];
-		process->registre[tabvalue[2] - 1] = loadint(ram, process->pc + (S % 512));
+		if (check_nb_reg(tabvalue[2]))
+		{
+			S = tabvalue[0] + tabvalue[1];
+			process->registre[tabvalue[2] - 1] = loadint(ram, process->pc + (S % IDX_MOD));
+		}
 		process->pc = mask_pc(process->pc, 6);
 	}
 	else if (tabtype[1] == 1 && tabtype[2] == 3)
 	{
-		S = process->registre[tabvalue[0] - 1] + tabvalue[1];
-		process->registre[tabvalue[2] - 1] = loadint(ram, process->pc + (S % 512));
+		if (check_nb_reg(tabvalue[2]))
+		{
+			S = process->registre[tabvalue[0] - 1] + tabvalue[1];
+			process->registre[tabvalue[2] - 1] = loadint(ram, process->pc + (S % IDX_MOD));
+		}
 		process->pc = mask_pc(process->pc, 5);
 	}
 	else if (tabtype[1] == 1 && tabtype[2] == 2)
 	{
-		S = process->registre[tabvalue[0] - 1] + tabvalue[1];
-		process->registre[tabvalue[2] - 1] = loadint(ram, process->pc + (S % 512));
+		if (check_nb_reg(tabvalue[2]))
+		{
+			S = process->registre[tabvalue[0] - 1] + tabvalue[1];
+			process->registre[tabvalue[2] - 1] = loadint(ram, process->pc + (S % IDX_MOD));
+		}	
 		process->pc = mask_pc(process->pc, 5);
 	}
 	else if (tabtype[1] == 2 && tabtype[2] == 1)
 	{
-		S = process->registre[tabvalue[1] - 1] + tabvalue[0];
-		process->registre[tabvalue[2] - 1] = loadint(ram, process->pc + (S % 512));
+		if (check_nb_reg(tabvalue[2]))
+		{
+			S = process->registre[tabvalue[1] - 1] + tabvalue[0];
+			process->registre[tabvalue[2] - 1] = loadint(ram, process->pc + (S % IDX_MOD));
+		}
 		process->pc = mask_pc(process->pc, 5);
 	}
 	else
 		process->pc = mask_pc(process->pc, 1);
-	//printf("%x", process->registre[1]);
+	if (process->carry == 0)
+		process->carry = 1;
+	else
+		process->carry = 0;
 }

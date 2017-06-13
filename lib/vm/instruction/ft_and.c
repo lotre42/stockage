@@ -128,9 +128,8 @@ void	ft_and(t_process *process, unsigned char *ram)
 	// ft_putnbr(tabtype[1]);
 	// ft_putnbr(tabtype[2]);
 
-	if (!check_nb_reg(tabvalue[2]))
+	if (!check_nb_reg(tabvalue[2]) || !check_nb_reg(tabvalue[1]) || !check_nb_reg(tabvalue[0]))
 	{
-		// ft_putendl("bonkour");
 		pluspc(tabtype, process);
 		return ;
 	}
