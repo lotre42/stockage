@@ -20,7 +20,7 @@
 #include <sys/types.h>
 #include <sys/uio.h>
 #include "op.h"
-#include "/Users/mac/Documents/recup/libft/includes/libft.h"
+#include "/Users/kahantar/Documents/kahantar2/libft/includes/libft.h"
 
 typedef struct			s_process
 {
@@ -31,13 +31,14 @@ typedef struct			s_process
 	int					pc;
 	int                 nbcycle;
 	int 				tmp;
+	int 				last;
 	struct s_process	*next;
 }						t_process;
 
 typedef struct			s_live
  {
  	int					nblive;
- 	int					lastlive;
+ 	int 				lastlive;
  }						t_live;
 
 typedef struct			s_player
@@ -88,4 +89,6 @@ void	add(t_process *process, unsigned char *ram);
 void	st(t_process *process, unsigned char *ram);
 int		check_nb_reg(unsigned int nb);
 int			lfork(t_process *process, unsigned char *ram);
+int			free_process(t_process **process);
+
 #endif

@@ -125,13 +125,13 @@ void	or(t_process *process, unsigned char *ram)
 	unsigned int *tabtype;
 	unsigned int *tabvalue;
 
+	tabtype = ft_downtype(process, ram);
+	tabvalue = ft_downvalue(process, tabtype, 0, ram);
 	if (!check_nb_reg(tabvalue[2]))
 	{
 		pluspc(tabtype, process);
 		return ;
 	}
-	tabtype = ft_downtype(process, ram);
-	tabvalue = ft_downvalue(process, tabtype, 0, ram);
 	ordi(process, tabtype, tabvalue, ram);
 	if (process->registre[tabvalue[2] - 1] == 0)
 		process->carry = 1;

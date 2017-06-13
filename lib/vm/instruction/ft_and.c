@@ -128,13 +128,13 @@ void	ft_and(t_process *process, unsigned char *ram)
 	// ft_putnbr(tabtype[1]);
 	// ft_putnbr(tabtype[2]);
 
-	if (!check_nb_reg(tabvalue[2]) || !check_nb_reg(tabvalue[1]) || !check_nb_reg(tabvalue[0]))
+	tabtype = ft_downtype(process, ram);
+	tabvalue = ft_downvalue(process, tabtype, 0, ram);
+	if (!check_nb_reg(tabvalue[2]))
 	{
 		pluspc(tabtype, process);
 		return ;
 	}
-	tabtype = ft_downtype(process, ram);
-	tabvalue = ft_downvalue(process, tabtype, 0, ram);
 	adddi(process, tabtype, tabvalue, ram);
 	if (process->registre[tabvalue[2] - 1] == 0)
 		process->carry = 1;

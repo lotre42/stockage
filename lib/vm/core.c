@@ -12,80 +12,101 @@
 
 #include "../../includes/vm.h"
 
-static void		delete_process(t_process *process, int i)
-{
-	t_process	*tmp;
+// static void		delete_process(t_process *process, int i)
+// {
+// 	t_process	*tmp;
 
-	
-	if (process == NULL)
-	 	return;
-	while (--i)
-		process = process->next;
-	tmp = process->next;
-	process->next = tmp->next;
-	ft_memdel((void**)&tmp);
+// 	if (process == NULL)
+// 	 	return;
+// 	while (--i)
+// 		process = process->next;
+// 	tmp = process->next;
+// 	process->next = tmp->next;
+// 	ft_memdel((void**)&tmp);
+// }
+
+static void				cpy_process(t_process **cpy, t_process *process)
+{
+	t_process *tmp;
+	t_process *new;
+	int			i;
+
+	i = 0;
+	if (!(new = ft_memalloc(sizeof(t_process))))
+		return ;
+	new->carry = process->carry;
+	new->nbplayer = process->nbplayer;
+	new->pc = process->pc;
+	new->next = NULL;
+	new->registre = init_tab(16);
+	new->last = process->last;
+	while (i < 16)
+	{
+		new->registre[i] = process->registre[i];
+		i++;
+	}
+	tmp = *cpy;
+	if (!tmp)
+		*cpy = new;
+	else
+	{
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = new;
+	}
 }
 
-static void		check_dead(t_process *process)
+static void			check_dead(t_process **process)
+{	
+	t_process *cpy;
+	t_process *tmp;
+
+	cpy = NULL;
+	tmp = *process;
+	while (tmp)
+	{
+		if (tmp->live != 0)
+			cpy_process(&cpy, tmp);
+		tmp = tmp->next;
+	}
+	// if ((*process))
+		// free_process(process);
+	*process = cpy;	
+}
+
+
+
+static int 		zero_process(t_process *process, t_live *live)
 {
 	int i;
-	t_process *tmp2;
 	t_process *tmp;
 
 	i = 0;
 	tmp = process;
-	while (tmp)
-	{
-		tmp2 = NULL;
-		if (tmp->live == 0 && i > 1 && process)
-			delete_process(process, i);
-		else if (tmp->live == 0 && i == 1 && process)
-		{
-			tmp2 = process->next;
-		if (tmp2 != NULL)
-			process = (process->next)->next;
-		else
-			process->next = NULL;
-		}
-		else if(tmp->live == 0 && i == 0 && process)
-		{
-			tmp2 = process;
-			process = process->next;
-			//free(tmp2);
-		}
-		tmp = tmp->next;
-		i++;
-	}
-}
-
-static void 		zero_process(t_process *process, t_live *live)
-{
-	int i;
-
-	i = 0;
 	if (!process)
-		return ;
+		return (0);
 	while (process)
 	{
-		// ft_putnbr(process->live);
-		 process->live = 0;
-		// ft_putchar(' ');
-		 if (process->next == NULL)
-		 	break;
+			i++;
 		process = process->next;
-		i++;
 	}
-	if (i < 2)
-		ft_putendl("bonjour");
-	// ft_putchar('\n');
-	// if (i == 0)
-		// printf("%x", live->lastlive);
-
+	process = tmp;
+	if (i == 0)
+		return (0);
+	else
+		return (1);
 }
 
-static void			check_live_dead(t_process *process, int *cycletodie,
+static int			check_live_dead(t_process **process, int *cycletodie,
  t_live *live, int *nbchecks)
 {
+	int i;
+	int j;
+	t_process *tmp;
+
+	tmp = *process;
+	i = 0;
+	j = 0;
 	if (live->nblive >= NBR_LIVE || *nbchecks == MAX_CHECKS)
 	{
 		*nbchecks = 0;
@@ -94,27 +115,38 @@ static void			check_live_dead(t_process *process, int *cycletodie,
 	}
 	else
 		*nbchecks = *nbchecks + 1;
-	// check_dead(process);
-	// zero_process(process, live);
+	while (tmp)
+	{
+		i++;
+		tmp = tmp->next;
+	}
+	check_dead(process);
+	tmp = *process;
+		while (tmp)
+	{
+		j++;
+		tmp = tmp->next;
+	}
+	// printf("avant---->%d\napres------>%d\n", i, j);
+	return (zero_process(*process, live));
 }
 
 static void		check_winner(t_process *process, t_live *live)
 {
 	t_process *tmp;
+	int 		win;
 	int i;
 
 	i = 0;
+	win = 0;
 	tmp = process;
 	while (tmp)
 	{
 		i++;
 		tmp = tmp->next;
 	}
-	if (i != 1)
-		printf("%d", live->lastlive);
-	else
-		printf("%d", process->nbplayer);
-
+	tmp = process;
+	printf("%d", live->lastlive);
 }
 
 int		core(unsigned char *ram, t_process *process, unsigned int *numberplayer)
@@ -137,7 +169,7 @@ int		core(unsigned char *ram, t_process *process, unsigned int *numberplayer)
 		{
 			if (process->tmp == 0)
 				nb_of_cycle(process, ram);
-			if (process->nbcycle == 0 && process->tmp == 1)
+			if (process->nbcycle == 0)
 				call_fonction(ram, process, live, numberplayer);
 			else
 				process->nbcycle--;
@@ -147,11 +179,11 @@ int		core(unsigned char *ram, t_process *process, unsigned int *numberplayer)
 		process = tmp;
 		if (cycle == cycletodie)
 		{
-			ft_putnbr(cycletodie);
-			check_live_dead(process, &cycletodie, live, &nbchecks);
+			if (!check_live_dead(&process, &cycletodie, live, &nbchecks))
+				break ;
 			cycle = 0;
 		}
 	}
-	// check_winner(process, live);
+	check_winner(process, live);
 	return (1);
 }

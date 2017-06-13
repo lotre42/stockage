@@ -14,7 +14,8 @@
 
 int		call_fonction(unsigned char *ram, t_process *process, t_live *live, unsigned int *nbplayer)
 {
-	// ft_putnbr(ram[process->pc]);
+	// if (ram[process->pc] == 0x0c || ram[process->pc] == 0x0f)
+		// ft_putnbr(1);
 	// ft_putstr(" ");
 	if (ram[process->pc] == 0x01)
 	{
@@ -29,8 +30,8 @@ int		call_fonction(unsigned char *ram, t_process *process, t_live *live, unsigne
 			add(process, ram);
 	else if (ram[process->pc] == 0x05)
 			sub(process, ram);
-	// else if (ram[process->pc] == 0x06)
-	// 		ft_and(process, ram);
+	else if (ram[process->pc] == 0x06)
+			ft_and(process, ram);
 	else if (ram[process->pc] == 0x07)
 			or(process, ram);
 	else if (ram[process->pc] == 0x08)

@@ -18,6 +18,7 @@ static int	cpstok(t_process *new, t_process *tmp, int nb)
 
 	i = 0;
 	new->live = 0;
+	new->nbplayer = tmp->nbplayer;
 	new->carry = tmp->carry;
 	new->pc = mask_pc(tmp->pc, (nb % IDX_MOD));
 	new->nbcycle = 0;
