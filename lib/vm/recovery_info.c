@@ -48,7 +48,7 @@ int main(int argc, char **argv)
 
 	numberplayer = init_number_player(argc - 1);
 	 i = 1;
-	 x = 0;
+	 x = 1;
 	 players = NULL;
 	while (i < argc)
 	{

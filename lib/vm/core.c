@@ -151,11 +151,13 @@ static void		check_winner(t_process *process, t_live *live, t_player *player)
 	// ft_putstr("(");
 	while (player)
 	{
-		ft_putnbr(player->nbplayer);
-		ft_putchar('\n');
 		if (player->nbplayer == live->lastlive)
 		{
+			ft_putstr("le joueur ");
+			ft_putnbr(player->nbplayer);
+			ft_putstr("(");
 			ft_putstr(player->header->prog_name);
+			ft_putstr(") a gagne");
 			break ;
 		}
 		player = player->next;

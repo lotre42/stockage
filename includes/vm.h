@@ -20,7 +20,7 @@
 #include <sys/types.h>
 #include <sys/uio.h>
 #include "op.h"
-#include "/Users/kahantar/Documents/kahantar2/libft/includes/libft.h"
+#include "/Users/mac/Documents/recup/libft/includes/libft.h"
 
 typedef struct			s_process
 {
