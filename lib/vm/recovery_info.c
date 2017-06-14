@@ -61,7 +61,7 @@ int main(int argc, char **argv)
 	process = create_list_process(players);
 	if (!(ram = create_ram(players, nb, process)))
 	 	return (0);
-	core(ram, process, numberplayer);
+	core(ram, process, numberplayer, players);
 	// print_ram(ram);
 	return (0);
 }

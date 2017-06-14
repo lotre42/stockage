@@ -131,7 +131,7 @@ static int			check_live_dead(t_process **process, int *cycletodie,
 	return (zero_process(*process, live));
 }
 
-static void		check_winner(t_process *process, t_live *live)
+static void		check_winner(t_process *process, t_live *live, t_player *player)
 {
 	t_process *tmp;
 	int 		win;
@@ -146,10 +146,24 @@ static void		check_winner(t_process *process, t_live *live)
 		tmp = tmp->next;
 	}
 	tmp = process;
-	printf("%d", live->lastlive);
+	// ft_putstr("le joueur");
+	// ft_putnbr(live->lastlive);
+	// ft_putstr("(");
+	while (player)
+	{
+		ft_putnbr(player->nbplayer);
+		ft_putchar('\n');
+		if (player->nbplayer == live->lastlive)
+		{
+			ft_putstr(player->header->prog_name);
+			break ;
+		}
+		player = player->next;
+	}
+	// ft_putstr(") a gagne");
 }
 
-int		core(unsigned char *ram, t_process *process, unsigned int *numberplayer)
+int		core(unsigned char *ram, t_process *process, unsigned int *numberplayer, t_player *player)
 {
 	int	cycletodie;
 	
@@ -184,6 +198,6 @@ int		core(unsigned char *ram, t_process *process, unsigned int *numberplayer)
 			cycle = 0;
 		}
 	}
-	check_winner(process, live);
+	check_winner(process, live, player);
 	return (1);
 }

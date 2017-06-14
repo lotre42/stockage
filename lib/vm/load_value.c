@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "../../includes/vm.h"
+#include "../../includes/vm.h"
 
 unsigned int	*load_value(t_process *process, unsigned char *ram, unsigned int *type, unsigned int *val)
 {

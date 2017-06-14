@@ -59,7 +59,7 @@ unsigned int 	*init_tab(int x);
 int				init_process(t_player *players, t_process **process, unsigned int nb);
 t_process 		*create_list_process(t_player *players);
 unsigned int 	*init_number_player(int nb);
-int				core(unsigned char *ram, t_process *process, unsigned int *numberplayer);
+int				core(unsigned char *ram, t_process *process, unsigned int *numberplayer, t_player *player);
 void			nb_of_cycle(t_process *process, unsigned char *ram);
 int				mask_pc(int nb, int i);
 int				call_fonction(unsigned char *ram, t_process *process, t_live *live, unsigned int *nbplayer);
@@ -69,7 +69,7 @@ int				call_fonction(unsigned char *ram, t_process *process, t_live *live, unsig
 void		ft_live(t_process *process, t_live *live, unsigned char *ram,
 			 unsigned int *numberplayer);
 void	sti(t_process *process, unsigned char *ram);
-void	ft_and(t_process *process, unsigned char *ram);
+void	and(t_process *process, unsigned char *ram);
 unsigned int			*ft_downtype(t_process *process, unsigned char *ram);
 unsigned int		*ft_downvalue(t_process *process, unsigned int *tabtype, int x, unsigned char *ram);
 void	zjump(t_process *process, unsigned char *ram);
@@ -90,5 +90,7 @@ void	st(t_process *process, unsigned char *ram);
 int		check_nb_reg(unsigned int nb);
 int			lfork(t_process *process, unsigned char *ram);
 int			free_process(t_process **process);
+unsigned int	*load_value(t_process *process, unsigned char *ram, unsigned int *type, unsigned int *val);
+void	and(t_process *process, unsigned char *ram);
 
 #endif

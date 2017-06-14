@@ -31,7 +31,7 @@ int		call_fonction(unsigned char *ram, t_process *process, t_live *live, unsigne
 	else if (ram[process->pc] == 0x05)
 			sub(process, ram);
 	else if (ram[process->pc] == 0x06)
-			ft_and(process, ram);
+			and(process, ram);
 	else if (ram[process->pc] == 0x07)
 			or(process, ram);
 	else if (ram[process->pc] == 0x08)
