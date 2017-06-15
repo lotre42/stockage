@@ -6,17 +6,18 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 17:05:41 by kahantar          #+#    #+#             */
-/*   Updated: 2017/06/13 17:06:02 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/06/15 04:48:44 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/vm.h"
 
-unsigned int	*load_value(t_process *process, unsigned char *ram, unsigned int *type, unsigned int *val)
+unsigned int	*load_value(t_process *process, unsigned char *ram,
+unsigned int *type, unsigned int *val)
 {
-	unsigned int *ret;
-	int 		 i;
-	
+	unsigned int	*ret;
+	int				i;
+
 	i = 0;
 	ret = init_tab(2);
 	while (i < 2)

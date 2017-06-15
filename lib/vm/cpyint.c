@@ -6,7 +6,7 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 00:42:25 by kahantar          #+#    #+#             */
-/*   Updated: 2017/06/08 15:54:58 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/06/15 02:39:49 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,3 @@ void	cpyint(unsigned char *ram, unsigned char *src, int pc)
 	ram[mask_pc(pc, 2)] = src[2];
 	ram[mask_pc(pc, 3)] = src[3];
 }
-

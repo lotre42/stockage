@@ -6,7 +6,7 @@
 /*   By: srabah <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 16:08:12 by srabah            #+#    #+#             */
-/*   Updated: 2017/06/06 16:08:16 by srabah           ###   ########.fr       */
+/*   Updated: 2017/06/15 02:37:24 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int		add_player_in_list(char *pathplayer, t_player **players, int x)
 {
-	t_player *new;
-	t_player *tmp;
-	int i;
+	t_player	*new;
+	t_player	*tmp;
+	int			i;
 
 	i = 0;
 	if ((new = malloc(sizeof(t_player))) == NULL)

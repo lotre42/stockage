@@ -6,7 +6,7 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 21:11:02 by kahantar          #+#    #+#             */
-/*   Updated: 2017/06/09 21:11:03 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/06/15 04:49:39 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		mask_pc(int nb, int i)
 {
 	int ret;
-	
+
 	ret = (nb + i) % (MEM_SIZE - 1);
 	return (ret);
 }

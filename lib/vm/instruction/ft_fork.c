@@ -6,7 +6,7 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/27 16:31:06 by kahantar          #+#    #+#             */
-/*   Updated: 2017/06/04 04:59:51 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/06/15 01:27:29 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ static int	cpstok(t_process *new, t_process *tmp, int nb)
 
 int			ft_fork(t_process *process, unsigned char *ram)
 {
-	t_process *new;
-	t_process *tmp;
-	int 	nb;
+	t_process	*new;
+	t_process	*tmp;
+	int			nb;
 
 	tmp = process;
 	if (!(new = malloc(sizeof(t_process))))
-	  return (0);	
+		return (0);
 	nb = ((ram[mask_pc(process->pc, 1)] << 8) & 0xff00) |
 	((ram[mask_pc(process->pc, 2)]) & 0x00ff);
 	cpstok(new, process, nb);

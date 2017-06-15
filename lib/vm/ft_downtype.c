@@ -6,7 +6,7 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/23 23:39:26 by kahantar          #+#    #+#             */
-/*   Updated: 2017/06/04 05:07:50 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/06/15 02:44:23 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,19 @@ static unsigned int	*ft_numberofparam(int ocp)
 	return (tabparam);
 }
 
-unsigned int			*ft_downtype(t_process *process, unsigned char *ram)
+unsigned int		*ft_downtype(t_process *process, unsigned char *ram)
 {
-	unsigned int *tabparam;
-	int i;
+	unsigned int	*tabparam;
+	int				i;
 
 	if (ram[process->pc] == 0x01 || ram[process->pc] == 0x09 ||
-		   	ram[process->pc] == 0x0c || ram[process->pc] == 0x0f)
+	ram[process->pc] == 0x0c || ram[process->pc] == 0x0f)
 	{
 		tabparam = init_tab(2);
 		tabparam[0] = 1;
 		tabparam[1] = 2;
 	}
-	else 
+	else
 		tabparam = ft_numberofparam(ram[mask_pc(process->pc, 1)]);
 	i = 1;
 	return (tabparam);

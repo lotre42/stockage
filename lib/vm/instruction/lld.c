@@ -6,7 +6,7 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/27 15:36:54 by kahantar          #+#    #+#             */
-/*   Updated: 2017/06/11 01:15:38 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/06/15 02:01:07 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ void	lld(t_process *process, unsigned char *ram)
 	if (tabtype[1] == 3)
 	{
 		if (check_nb_reg(tabvalue[1]))
-			process->registre[tabvalue[1] - 1] = loadint(ram, process->pc + tabvalue[0]);
+		{
+			process->registre[tabvalue[1] - 1] =
+			loadint(ram, process->pc + tabvalue[0]);
+		}
 		process->pc = mask_pc(process->pc, 5);
 	}
 	else if (tabtype[1] == 2)

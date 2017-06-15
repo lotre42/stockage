@@ -6,17 +6,18 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 15:39:05 by kahantar          #+#    #+#             */
-/*   Updated: 2017/06/09 15:39:07 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/06/15 04:46:26 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/vm.h"
 
-int		init_process(t_player *players, t_process **process, unsigned int nb)
+int			init_process(t_player *players, t_process **process,
+unsigned int nb)
 {
-	t_process *new;
-	t_process *tmp;
-	int i;
+	t_process	*new;
+	t_process	*tmp;
+	int			i;
 
 	i = 0;
 	new = NULL;
@@ -37,10 +38,10 @@ int		init_process(t_player *players, t_process **process, unsigned int nb)
 	return (1);
 }
 
-t_process 	*create_list_process(t_player *players)
+t_process	*create_list_process(t_player *players)
 {
-	t_process *process;
-	int 		i;
+	t_process	*process;
+	int			i;
 
 	process = NULL;
 	//i = 0;

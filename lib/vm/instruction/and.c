@@ -6,7 +6,7 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 17:17:28 by kahantar          #+#    #+#             */
-/*   Updated: 2017/06/13 17:17:30 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/06/15 01:26:16 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,16 @@
 
 static void	pluspc(unsigned int *tabtype, t_process *process)
 {
-	if ((tabtype[1] == 2 && tabtype[2] == 3) || (tabtype[1] == 3 && tabtype[2] == 2))
+	if ((tabtype[1] == 2 && tabtype[2] == 3) ||
+	(tabtype[1] == 3 && tabtype[2] == 2))
 		process->pc = mask_pc(process->pc, 9);
-	else if ((tabtype[1] == 2 && tabtype[2] == 1) && (tabtype[1] == 1 && tabtype[2] == 2))
+	else if ((tabtype[1] == 2 && tabtype[2] == 1) &&
+	(tabtype[1] == 1 && tabtype[2] == 2))
 		process->pc = mask_pc(process->pc, 8);
 	else if ((tabtype[1] == 2 && tabtype[2] == 2))
 		process->pc = mask_pc(process->pc, 11);
-	else if ((tabtype[1] == 3 && tabtype[2] == 1) && (tabtype[1] == 1 && tabtype[2] == 3))
+	else if ((tabtype[1] == 3 && tabtype[2] == 1) &&
+	(tabtype[1] == 1 && tabtype[2] == 3))
 		process->pc = mask_pc(process->pc, 6);
 	else if (tabtype[1] == 1 && tabtype[2] == 1)
 		process->pc = mask_pc(process->pc, 5);
@@ -30,7 +33,7 @@ static void	pluspc(unsigned int *tabtype, t_process *process)
 		process->pc = mask_pc(process->pc, 1);
 }
 
-void	and(t_process *process, unsigned char *ram)
+void		and(t_process *process, unsigned char *ram)
 {
 	unsigned int *tabtype;
 	unsigned int *tabvalue;

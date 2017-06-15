@@ -6,13 +6,13 @@
 /*   By: srabah <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 16:13:51 by srabah            #+#    #+#             */
-/*   Updated: 2017/06/06 16:13:52 by srabah           ###   ########.fr       */
+/*   Updated: 2017/06/15 05:01:59 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/vm.h"
 
-static int	checksize(int sizetotal)
+static int					checksize(int sizetotal)
 {
 	if (sizetotal < (COMMENT_LENGTH + PROG_NAME_LENGTH + 12))
 	{
@@ -23,7 +23,6 @@ static int	checksize(int sizetotal)
 	return (1);
 }
 
-
 static inline unsigned int	swap(unsigned int x)
 {
 	x = (x >> (unsigned int)24) |
@@ -33,8 +32,7 @@ static inline unsigned int	swap(unsigned int x)
 	return (x);
 }
 
-
-static inline int	open_check(char *pathplayer)
+static inline int			open_check(char *pathplayer)
 {
 	int fd;
 
@@ -43,30 +41,23 @@ static inline int	open_check(char *pathplayer)
 		ft_putstr("Erreur : chemin introuvable\n");
 		return (-1);
 	}
-	return(fd);
+	return (fd);
 }
 
-int	open_path(char *pathplayer, t_player *player, unsigned int x)
+int							open_path(char *pathplayer, t_player *player,
+unsigned int x)
 {
+	int			fd;
+	size_t		res;
+	char		*buf;
+	size_t		size;
+	header_t	*head;
 
-	int fd;
-	size_t res;
-	char *buf;
-	size_t size;
-	header_t  *head;
-	
-	head = NULL;
 	if ((fd = open_check(pathplayer)) == -1)
 		return (0);
 	size = lseek(fd, (size_t)0, SEEK_END);
 	lseek(fd, (size_t)0, SEEK_SET);
-	if (!checksize(size))
-	{
-		return (0);
-		close(fd);	
-	}
-		
-	if (!(buf = ft_memalloc((size))))
+	if (!(buf = ft_memalloc((size))) || (!checksize(size)))
 	{
 		close(fd);
 		return (0);

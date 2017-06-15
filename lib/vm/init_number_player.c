@@ -6,13 +6,13 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 17:44:09 by kahantar          #+#    #+#             */
-/*   Updated: 2017/06/09 17:44:14 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/06/15 02:58:56 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/vm.h"
 
-unsigned int 	*init_number_player(int nb)
+unsigned int	*init_number_player(int nb)
 {
 	unsigned int *ret;
 	unsigned int i;

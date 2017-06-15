@@ -6,13 +6,13 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 00:21:14 by kahantar          #+#    #+#             */
-/*   Updated: 2017/06/02 00:42:18 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/06/15 05:07:32 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/vm.h"
 
-unsigned char *reverseint(unsigned int nb)
+unsigned char	*reverseint(unsigned int nb)
 {
 	unsigned char *ret;
 
