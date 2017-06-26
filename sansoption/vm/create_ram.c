@@ -60,7 +60,7 @@ unsigned char		*create_ram(t_player *players, int nb, t_process *process)
 	{
 		players = players->next;
 		process = process->next;
-		if (!size_prog(players->header->prog_size, x) || !nbplayer(nb))
+		if (!size_prog(players->header->prog_size, CHAMP_MAX_SIZE) || !nbplayer(nb))
 			return (0);
 		cpyinram(ram, players, x * i);
 		process->pc = x * i;

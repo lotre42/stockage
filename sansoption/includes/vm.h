@@ -20,7 +20,7 @@
 # include <sys/types.h>
 # include <sys/uio.h>
 # include "op.h"
-# include "/Users/kahantar/Documents/push_swap/libft/includes/libft.h"
+# include "libft.h"
 
 typedef struct			s_process
 {
