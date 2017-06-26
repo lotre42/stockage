@@ -21,11 +21,8 @@ static void		check_winner(t_process *process, t_live *live, t_player *player)
 	{
 		if (player->nbplayer == live->lastlive)
 		{
-			ft_putstr("le joueur ");
-			ft_putnbr(player->nbplayer);
-			ft_putstr("(");
-			ft_putstr(player->header->prog_name);
-			ft_putstr(") a gagne");
+			/*printf*/
+			printf("le joueur %d (%s) a gagne\n", player->nbplayer, player->header->prog_name);
 			break ;
 		}
 		player = player->next;

@@ -26,6 +26,8 @@ static void	next_fonction(t_process *process, unsigned char *ram)
 		lldi(process, ram);
 	else if (ram[process->pc] == 0x0f)
 		lfork(process, ram);
+	else if (ram[process->pc] == 0x10)
+		aff(process, ram);
 	else
 		process->pc = mask_pc(process->pc, 1);
 }

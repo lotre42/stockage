@@ -29,7 +29,7 @@ static int			size_prog(unsigned int size, unsigned int x)
 {
 	if (size > x)
 	{
-		ft_putstr("Le programme est trop grand pour s'inserer dans la ram");
+		ft_printf("Le programme est trop grand pour s'inserer dans la ram\n");
 		return (0);
 	}
 	return (1);
@@ -39,7 +39,7 @@ static int			nbplayer(int nb)
 {
 	if (nb > MAX_PLAYERS)
 	{
-		ft_putstr("Le nombre de player est trop important\n");
+		ft_printf("Le nombre de player est trop important\n");
 		return (0);
 	}
 	return (1);

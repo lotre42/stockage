@@ -1,35 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_ram.c                                        :+:      :+:    :+:   */
+/*   aff.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/08 16:31:40 by kahantar          #+#    #+#             */
-/*   Updated: 2017/06/08 16:31:49 by kahantar         ###   ########.fr       */
+/*   Created: 2017/06/26 17:37:27 by kahantar          #+#    #+#             */
+/*   Updated: 2017/06/26 17:37:28 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/vm.h"
+#include "../../includes/vm.h"
 
-void	print_ram(unsigned char *ram)
+void	aff(t_process *process, unsigned char *ram)
 {
-	int i;
-	int x;
-
-	i = 0;
-	while (i < MEM_SIZE)
-	{
-		x = 0;
-		while (x < 32)
-		{
-			if (ram[i] < 16)
-				ft_printf("0%hhx ", ram[i]);
-			else
-				ft_printf("%hhx ", ram[i]);
-			x++;
-			i++;
-		}
-		printf("\n");
-	}
+	ft_putchar(process->registre[ram[((mask_pc(process->pc, 2)) - 1) % 256]]);
+	process->pc = mask_pc(process->pc, 3);
 }

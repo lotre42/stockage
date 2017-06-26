@@ -7,8 +7,6 @@ NAME = corewar
 #	GCC flags
 CFLAGS = -Wall -Wextra -Werror -Ofast
 
-# Flags for Opencl compatibility
-
 #	Includes directories
 INC_RT = includes
 INCLUDES += $(addprefix -iquote , $(INC_RT))

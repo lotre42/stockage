@@ -21,6 +21,7 @@
 # include <sys/uio.h>
 # include "op.h"
 # include "libft.h"
+# include "ft_printf.h"
 
 typedef struct			s_process
 {
@@ -91,6 +92,7 @@ void					add(t_process *process, unsigned char *ram);
 void					st(t_process *process, unsigned char *ram);
 int						check_nb_reg(unsigned int nb);
 int						lfork(t_process *process, unsigned char *ram);
+void					aff(t_process *process, unsigned char *ram);
 int						free_process(t_process **process);
 unsigned int			*load_value(t_process *process, unsigned char *ram,
 						unsigned int *type, unsigned int *val);
