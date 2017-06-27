@@ -61,8 +61,6 @@ static void		check_dead(t_process **process)
 			create_process(&cpy, tmp);
 		tmp = tmp->next;
 	}
-	// if ((*process))
-	// free_process(process);
 	*process = cpy;
 }
 

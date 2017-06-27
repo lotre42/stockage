@@ -6,27 +6,25 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 17:44:09 by kahantar          #+#    #+#             */
-/*   Updated: 2017/06/15 02:58:56 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/06/27 19:59:41 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/vm.h"
 
-unsigned int	*init_number_player(int nb)
+unsigned int	*init_number_player(int nb, t_path *path)
 {
-	unsigned int *ret;
-	unsigned int i;
-	unsigned int x;
+	unsigned int	*ret;
+	int				x;
 
 	x = 1;
-	i = -1;
 	ret = init_tab(nb + 1);
 	ret[0] = nb;
-	while (x < (unsigned int)nb + 1)
+	while (path)
 	{
-		ret[x] = i;
+		ret[x] = path->nb;
 		x++;
-		i--;
+		path = path->next;
 	}
 	return (ret);
 }

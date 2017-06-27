@@ -20,7 +20,6 @@ int			free_process(t_process **process)
 	while (cp)
 	{
 		cp = (*process)->next;
-		// free(*(process)->registre);
 		free(*process);
 		*process = cp;
 	}

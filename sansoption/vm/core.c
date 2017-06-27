@@ -21,8 +21,11 @@ static void		check_winner(t_process *process, t_live *live, t_player *player)
 	{
 		if (player->nbplayer == live->lastlive)
 		{
-			/*printf*/
-			printf("le joueur %d (%s) a gagne\n", player->nbplayer, player->header->prog_name);
+			ft_putstr("le joueur ");
+			ft_putnbr(player->nbplayer);
+			ft_putstr("(");
+			ft_putstr(player->header->prog_name);
+			ft_putstr(") a gagne\n");
 			break ;
 		}
 		player = player->next;
@@ -57,32 +60,31 @@ static int		nb_checks(int *cycletodie, t_live *live, int *nbchecks)
 	return (1);
 }
 
-int				core(unsigned char *ram, t_process *process,
-unsigned int *numberplayer, t_player *player)
+int				core(t_data *data)
 {
-	int			cycletodie;
 	int			cycle;
 	t_process	*tmp;
 	t_live		*live;
-	int			nbchecks;
 
-	nbchecks = 0;
 	live = ft_memalloc(sizeof(t_live));
-	cycletodie = CYCLE_TO_DIE;
 	cycle = 0;
-	tmp = process;
-	while (cycle < cycletodie)
+	tmp = data->process;
+	while (cycle < data->cycletodie)
 	{
-		check_cycle(ram, process, live, numberplayer);
+		if (data->cycle == data->dump)
+			return (print_ram(data->ram));
+		check_cycle(data->ram, data->process, live, data->numberplayer);
 		cycle++;
-		process = tmp;
-		if (cycle == cycletodie && nb_checks(&cycletodie, live, &nbchecks))
+		data->cycle++;
+		data->process = tmp;
+		if (cycle == data->cycletodie &&
+		nb_checks(&data->cycletodie, live, &data->nbchecks))
 		{
-			if (!check_live_dead(&process))
+			if (!check_live_dead(&data->process))
 				break ;
 			cycle = 0;
 		}
 	}
-	check_winner(process, live, player);
+	check_winner(data->process, live, data->players);
 	return (1);
 }

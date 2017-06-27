@@ -6,7 +6,7 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/15 05:07:42 by kahantar          #+#    #+#             */
-/*   Updated: 2017/06/15 05:17:21 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/06/27 19:59:26 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ unsigned char		*create_ram(t_player *players, int nb, t_process *process)
 	{
 		players = players->next;
 		process = process->next;
-		if (!size_prog(players->header->prog_size, CHAMP_MAX_SIZE) || !nbplayer(nb))
+		if (!size_prog(players->header->prog_size, CHAMP_MAX_SIZE)
+		|| !nbplayer(nb))
 			return (0);
 		cpyinram(ram, players, x * i);
 		process->pc = x * i;

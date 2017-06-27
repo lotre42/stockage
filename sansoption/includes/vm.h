@@ -6,7 +6,7 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 22:23:16 by kahantar          #+#    #+#             */
-/*   Updated: 2017/06/26 14:49:10 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/06/27 20:17:54 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,42 +45,46 @@ typedef struct			s_live
 typedef struct			s_player
 {
 	unsigned char		*instruction;
-	struct header_s		*header;
+	struct s_header		*header;
 	char				*data_file;
 	unsigned int		nbplayer;
 	struct s_player		*next;
 }						t_player;
 
-typedef struct 			s_data
+typedef struct			s_data
 {
 	unsigned char		*ram;
 	t_process			*process;
-	unsigned int 		*numberplayer;
+	unsigned int		*numberplayer;
 	t_player			*players;
-	int 				dump;
+	int					dump;
+	int					cycle;
+	int					nbchecks;
+	int					cycletodie;
 }						t_data;
 
-typedef struct 			s_path
+typedef struct			s_path
 {
 	char				*str;
-	int 				nb;
+	unsigned int		nb;
 	struct s_path		*next;
 }						t_path;
 
-int						recovery_process(int argc, char **argv);
+int						ft_add(unsigned int nb, char *str, t_path **add);
+int						ft_addend(unsigned int nb, char *str, t_path **add);
+int						recovery_info(t_path *path, t_data *data);
 int						open_path(char *pathplayer, t_player *player,
 						unsigned int x);
 int						add_player_in_list(char *pathplayer,
 						t_player **players, int x);
 unsigned char			*create_ram(t_player *players, int nb,
 						t_process *process);
-void					print_ram(unsigned char *ram);
+int						print_ram(unsigned char *ram);
 unsigned int			*init_tab(int x);
 int						init_process(t_process **process, unsigned int nb);
 t_process				*create_list_process(t_player *players);
-unsigned int			*init_number_player(int nb);
-int						core(unsigned char *ram, t_process *process,
-						unsigned int *numberplayer, t_player *player);
+unsigned int			*init_number_player(int nb, t_path *path);
+int						core(t_data *data);
 void					nb_of_cycle(t_process *process, unsigned char *ram);
 int						mask_pc(int nb, int i);
 int						call_fonction(unsigned char *ram, t_process *process,

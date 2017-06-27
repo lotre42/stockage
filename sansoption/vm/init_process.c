@@ -43,15 +43,12 @@ t_process	*create_list_process(t_player *players)
 	int			i;
 
 	process = NULL;
-	//i = 0;
 	i = -1;
 	while (players)
 	{
-		if (!init_process(&process, i))/*nbplayer[i]*/
+		if (!init_process(&process, players->nbplayer))
 			return (0);
 		players = players->next;
-		//i++;
-		i--;
 	}
 	return (process);
 }

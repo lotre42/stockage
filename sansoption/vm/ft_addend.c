@@ -12,26 +12,28 @@
 
 #include "../includes/vm.h"
 
-int		ft_add(char *str, t_path **add)
+int		ft_add(unsigned int nb, char *str, t_path **add)
 {
 	t_path *new;
 
 	if (!(new = malloc(sizeof(t_path))))
 		return (0);
 	new->str = ft_strdup(str);
+	new->nb = nb;
 	new->next = *add;
 	*add = new;
 	return (0);
 }
 
-int		ft_addend(char *str, t_path **add)
+int		ft_addend(unsigned int nb, char *str, t_path **add)
 {
 	t_path *new;
 	t_path *tmp;
 
 	if (!(new = malloc(sizeof(t_path))))
 		return (0);
-	new->str = ft_strdup;
+	new->str = ft_strdup(str);
+	new->nb = nb;
 	new->next = NULL;
 	tmp = *add;
 	if (*add == NULL)

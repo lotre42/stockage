@@ -51,7 +51,7 @@ unsigned int x)
 	size_t		res;
 	char		*buf;
 	size_t		size;
-	header_t	*head;
+	t_header	*head;
 
 	if ((fd = open_check(pathplayer)) == -1)
 		return (0);

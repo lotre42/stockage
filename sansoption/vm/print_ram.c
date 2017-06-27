@@ -12,7 +12,7 @@
 
 #include "../includes/vm.h"
 
-void	print_ram(unsigned char *ram)
+int	print_ram(unsigned char *ram)
 {
 	int i;
 	int x;
@@ -30,6 +30,7 @@ void	print_ram(unsigned char *ram)
 			x++;
 			i++;
 		}
-		printf("\n");
+		ft_printf("\n");
 	}
+	return (1);
 }
