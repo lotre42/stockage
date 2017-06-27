@@ -12,7 +12,7 @@
 
 #include "../includes/vm.h"
 
-int		check_nb_reg(unsigned int nb)
+int				check_nb_reg(unsigned int nb)
 {
 	if (((nb - 1) < 16))
 		return (1);
@@ -20,7 +20,7 @@ int		check_nb_reg(unsigned int nb)
 		return (0);
 }
 
-void	cpyint(unsigned char *ram, unsigned char *src, int pc)
+void			cpyint(unsigned char *ram, unsigned char *src, int pc)
 {
 	ram[pc] = src[0];
 	ram[mask_pc(pc, 1)] = src[1];
@@ -28,7 +28,7 @@ void	cpyint(unsigned char *ram, unsigned char *src, int pc)
 	ram[mask_pc(pc, 3)] = src[3];
 }
 
-int			free_process(t_process **process)
+int				free_process(t_process **process)
 {
 	t_process *cp;
 

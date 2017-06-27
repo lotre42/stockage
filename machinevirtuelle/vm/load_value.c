@@ -49,7 +49,7 @@ unsigned int	loadint(unsigned char *ram, int pc)
 	return (ret);
 }
 
-int		mask_pc(int nb, int i)
+int				mask_pc(int nb, int i)
 {
 	int ret;
 
@@ -57,7 +57,7 @@ int		mask_pc(int nb, int i)
 	return (ret);
 }
 
-int	print_ram(unsigned char *ram)
+int				print_ram(unsigned char *ram)
 {
 	int i;
 	int x;
