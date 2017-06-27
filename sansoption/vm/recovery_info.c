@@ -12,7 +12,7 @@
 
 #include "../includes/vm.h"
 
-int main(int argc, char **argv)
+int recovery_info(int argc, char **argv)
 {
 	unsigned char		*ram;
 	unsigned int		i;

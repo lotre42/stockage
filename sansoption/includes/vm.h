@@ -51,6 +51,22 @@ typedef struct			s_player
 	struct s_player		*next;
 }						t_player;
 
+typedef struct 			s_data
+{
+	unsigned char		*ram;
+	t_process			*process;
+	unsigned int 		*numberplayer;
+	t_player			*players;
+	int 				dump;
+}						t_data;
+
+typedef struct 			s_path
+{
+	char				*str;
+	int 				nb;
+	struct s_path		*next;
+}						t_path;
+
 int						recovery_process(int argc, char **argv);
 int						open_path(char *pathplayer, t_player *player,
 						unsigned int x);
