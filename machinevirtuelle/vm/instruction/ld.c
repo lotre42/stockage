@@ -37,4 +37,8 @@ void	ld(t_process *process, unsigned char *ram)
 	else
 		process->pc = mask_pc(process->pc, 1);
 	process->carry = 1;
+	if (tabtype)
+		free(tabtype);
+	if (tabvalue)
+		free(tabvalue);
 }

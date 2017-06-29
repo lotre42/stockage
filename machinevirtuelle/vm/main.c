@@ -64,5 +64,8 @@ int				main(int argc, char **argv)
 			ft_add(i * -1, argv[i], &path);
 		i++;
 	}
-	return (recovery_info(path, data));
+	recovery_info(path, data);
+	ft_freepath(&path);
+	ft_freedata(&data);
+	return (0);
 }

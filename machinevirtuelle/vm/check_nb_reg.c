@@ -30,16 +30,18 @@ void			cpyint(unsigned char *ram, unsigned char *src, int pc)
 
 int				free_process(t_process **process)
 {
-	t_process *cp;
+	t_process *tmp;
 
-	cp = (*process);
-	while (cp)
+	tmp = (*process);
+	while (tmp)
 	{
-		cp = (*process)->next;
+		if ((*process)->registre)
+			free((*process)->registre);
+		tmp = (*process)->next;
 		free(*process);
-		*process = cp;
+		*process = tmp;
 	}
-	return (0);
+	return (1);
 }
 
 unsigned int	*init_number_player(int nb, t_path *path)

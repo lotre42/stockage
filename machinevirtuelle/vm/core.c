@@ -86,5 +86,6 @@ int				core(t_data *data)
 		}
 	}
 	check_winner(data->process, live, data->players);
+	free(live);
 	return (1);
 }

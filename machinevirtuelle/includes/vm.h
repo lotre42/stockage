@@ -70,6 +70,8 @@ typedef struct			s_path
 	struct s_path		*next;
 }						t_path;
 
+void					ft_freedata(t_data **data);
+void					ft_freepath(t_path **path);
 int						ft_add(unsigned int nb, char *str, t_path **add);
 int						ft_addend(unsigned int nb, char *str, t_path **add);
 int						recovery_info(t_path *path, t_data *data);

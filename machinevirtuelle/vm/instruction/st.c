@@ -16,6 +16,7 @@ void	st(t_process *process, unsigned char *ram)
 {
 	unsigned int	*tabtype;
 	unsigned int	*tabvalue;
+	unsigned char	*rev;
 
 	tabtype = ft_downtype(process, ram);
 	tabvalue = ft_downvalue(process, tabtype, 0, ram);
@@ -23,8 +24,10 @@ void	st(t_process *process, unsigned char *ram)
 	{
 		if (check_nb_reg(tabvalue[0]))
 		{
-			cpyint(ram, reverseint(process->registre[tabvalue[0] - 1]),
+			rev = reverseint(process->registre[tabvalue[0] - 1]);
+			cpyint(ram, rev,
 			mask_pc(process->pc, (tabvalue[1] % IDX_MOD)));
+			free(rev);
 		}
 		process->pc = mask_pc(process->pc, 5);
 	}
@@ -39,4 +42,8 @@ void	st(t_process *process, unsigned char *ram)
 	}
 	else
 		process->pc = mask_pc(process->pc, 1);
+	if (tabtype)
+		free(tabtype);
+	if (tabvalue)
+		free(tabvalue);
 }
