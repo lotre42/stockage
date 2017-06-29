@@ -70,6 +70,8 @@ typedef struct			s_path
 	struct s_path		*next;
 }						t_path;
 
+void					free_tab(unsigned int *tabtype, unsigned int *tabvalue);
+int						ft_startandfree(t_path **path, t_data **data);
 void					ft_freedata(t_data **data);
 void					ft_freepath(t_path **path);
 int						ft_add(unsigned int nb, char *str, t_path **add);

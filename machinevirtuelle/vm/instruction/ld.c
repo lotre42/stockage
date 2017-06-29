@@ -12,7 +12,15 @@
 
 #include "../../includes/vm.h"
 
-void	ld(t_process *process, unsigned char *ram)
+void		free_tab(unsigned int *tabtype, unsigned int *tabvalue)
+{
+	if (tabtype)
+		free(tabtype);
+	if (tabvalue)
+		free(tabvalue);
+}
+
+void		ld(t_process *process, unsigned char *ram)
 {
 	unsigned int	*tabtype;
 	unsigned int	*tabvalue;
@@ -37,8 +45,5 @@ void	ld(t_process *process, unsigned char *ram)
 	else
 		process->pc = mask_pc(process->pc, 1);
 	process->carry = 1;
-	if (tabtype)
-		free(tabtype);
-	if (tabvalue)
-		free(tabvalue);
+	free_tab(tabtype, tabvalue);
 }

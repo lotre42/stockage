@@ -40,7 +40,7 @@ int			lfork(t_process *process, unsigned char *ram)
 
 	tmp = process;
 	if (!(new = malloc(sizeof(t_process))))
-		return (0);
+		exit(0);
 	nb = ((ram[mask_pc(process->pc, 1)] << 8) & 0xff00) |
 	((ram[mask_pc(process->pc, 2)]) & 0x00ff);
 	cpstok(new, process, nb);

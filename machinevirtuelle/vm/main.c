@@ -46,7 +46,7 @@ int				main(int argc, char **argv)
 
 	i = 1;
 	path = NULL;
-	if (!(data = ft_memalloc(sizeof(t_data))))
+	if (!(data = ft_memalloc(sizeof(t_data))) || argc < 2)
 		return (0);
 	check_flag(argv, &i, data);
 	while (i < argc)
@@ -64,8 +64,5 @@ int				main(int argc, char **argv)
 			ft_add(i * -1, argv[i], &path);
 		i++;
 	}
-	recovery_info(path, data);
-	ft_freepath(&path);
-	ft_freedata(&data);
-	return (0);
+	return (ft_startandfree(&path, &data));
 }

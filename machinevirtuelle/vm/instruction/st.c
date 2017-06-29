@@ -12,23 +12,36 @@
 
 #include "../../includes/vm.h"
 
-void	st(t_process *process, unsigned char *ram)
+static void	free_tab(unsigned int *tabtype, unsigned int *tabvalue)
+{
+	if (tabtype)
+		free(tabtype);
+	if (tabvalue)
+		free(tabvalue);
+}
+
+void		st_rev(unsigned int *tabvalue,
+t_process *process, unsigned char *ram)
+{
+	unsigned char *rev;
+
+	rev = reverseint(process->registre[tabvalue[0] - 1]);
+	cpyint(ram, rev,
+	mask_pc(process->pc, (tabvalue[1] % IDX_MOD)));
+	free(rev);
+}
+
+void		st(t_process *process, unsigned char *ram)
 {
 	unsigned int	*tabtype;
 	unsigned int	*tabvalue;
-	unsigned char	*rev;
 
 	tabtype = ft_downtype(process, ram);
 	tabvalue = ft_downvalue(process, tabtype, 0, ram);
 	if (tabtype[2] == 3)
 	{
 		if (check_nb_reg(tabvalue[0]))
-		{
-			rev = reverseint(process->registre[tabvalue[0] - 1]);
-			cpyint(ram, rev,
-			mask_pc(process->pc, (tabvalue[1] % IDX_MOD)));
-			free(rev);
-		}
+			st_rev(tabvalue, process, ram);
 		process->pc = mask_pc(process->pc, 5);
 	}
 	else if (tabtype[2] == 1)
@@ -42,8 +55,5 @@ void	st(t_process *process, unsigned char *ram)
 	}
 	else
 		process->pc = mask_pc(process->pc, 1);
-	if (tabtype)
-		free(tabtype);
-	if (tabvalue)
-		free(tabvalue);
+	free_tab(tabtype, tabvalue);
 }

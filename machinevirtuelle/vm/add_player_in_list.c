@@ -20,7 +20,7 @@ int		add_player_in_list(char *pathplayer, t_player **players, int x)
 
 	i = 0;
 	if ((new = malloc(sizeof(t_player))) == NULL)
-		return (0);
+		exit(0);
 	new->instruction = NULL;
 	new->header = NULL;
 	new->data_file = NULL;

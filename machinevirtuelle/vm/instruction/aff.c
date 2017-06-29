@@ -15,6 +15,9 @@
 void	aff(t_process *process, unsigned char *ram)
 {
 	if (check_nb_reg(((mask_pc(process->pc, 2)))))
-		ft_putchar(process->registre[ram[((mask_pc(process->pc, 2)) - 1) % 256]]);
+	{
+		ft_putchar(process->registre[ram[((mask_pc(process->pc, 2)) - 1)
+		% 256]]);
+	}
 	process->pc = mask_pc(process->pc, 3);
 }

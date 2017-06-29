@@ -24,6 +24,8 @@ static void	nb2(t_process *process, unsigned char *ram)
 		process->nbcycle = 50;
 	else if (ram[process->pc] == 15)
 		process->nbcycle = 1000;
+	else if (ram[process->pc] == 16)
+		process->nbcycle = 2;
 	else
 		process->nbcycle = 0;
 }

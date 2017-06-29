@@ -68,7 +68,7 @@ unsigned int	*init_tab(int x)
 
 	i = 0;
 	if (!(tab = (unsigned int*)malloc(sizeof(unsigned int) * x)))
-		return (0);
+		exit(0);
 	while (i < x)
 	{
 		tab[i] = 0;

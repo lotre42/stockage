@@ -93,8 +93,5 @@ void		sti(t_process *process, unsigned char *ram)
 		process->pc = mask_pc(process->pc, 1);
 	if (rev)
 		free(rev);
-	if (tabtype)
-		free(tabtype);
-	if (tabvalue)
-		free(tabvalue);
+	free_tab(tabtype, tabvalue);
 }

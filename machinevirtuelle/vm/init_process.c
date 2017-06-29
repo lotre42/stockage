@@ -21,7 +21,7 @@ int			init_process(t_process **process, unsigned int nb)
 	i = 0;
 	new = NULL;
 	if (!(new = ft_memalloc(sizeof(t_process))))
-		return (0);
+		exit(0);
 	new->registre = init_tab(16);
 	new->registre[0] = nb;
 	new->nbplayer = nb;

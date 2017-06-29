@@ -17,7 +17,7 @@ int		ft_add(unsigned int nb, char *str, t_path **add)
 	t_path *new;
 
 	if (!(new = malloc(sizeof(t_path))))
-		return (0);
+		exit(0);
 	new->str = ft_strdup(str);
 	new->nb = nb;
 	new->next = *add;
@@ -31,7 +31,7 @@ int		ft_addend(unsigned int nb, char *str, t_path **add)
 	t_path *tmp;
 
 	if (!(new = malloc(sizeof(t_path))))
-		return (0);
+		exit(0);
 	new->str = ft_strdup(str);
 	new->nb = nb;
 	new->next = NULL;

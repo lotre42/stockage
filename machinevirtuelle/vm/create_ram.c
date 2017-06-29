@@ -25,9 +25,9 @@ static void			cpyinram(unsigned char *ram, t_player *players, int i)
 	}
 }
 
-static int			size_prog(unsigned int size, unsigned int x)
+static int			size_prog(unsigned int size)
 {
-	if (size > x)
+	if (size > CHAMP_MAX_SIZE)
 	{
 		ft_printf("Le programme est trop grand pour s'inserer dans la ram\n");
 		return (0);
@@ -55,13 +55,14 @@ unsigned char		*create_ram(t_player *players, int nb, t_process *process)
 	x = MEM_SIZE / nb;
 	ram = (unsigned char *)ft_strnew(MEM_SIZE);
 	cpyinram(ram, players, 0);
+	if (!nbplayer(nb))
+		return (0);
 	nb--;
 	while (nb > 0)
 	{
 		players = players->next;
 		process = process->next;
-		if (!size_prog(players->header->prog_size, CHAMP_MAX_SIZE)
-		|| !nbplayer(nb))
+		if (!size_prog(players->header->prog_size) || !nbplayer(nb))
 			return (0);
 		cpyinram(ram, players, x * i);
 		process->pc = x * i;

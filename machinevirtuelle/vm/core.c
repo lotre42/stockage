@@ -30,6 +30,7 @@ static void		check_winner(t_process *process, t_live *live, t_player *player)
 		}
 		player = player->next;
 	}
+	free(live);
 }
 
 static void		check_cycle(unsigned char *ram, t_process *process,
@@ -86,6 +87,5 @@ int				core(t_data *data)
 		}
 	}
 	check_winner(data->process, live, data->players);
-	free(live);
-	return (1);
+	return (0);
 }

@@ -30,7 +30,7 @@ static void		create_process(t_process **cpy, t_process *process)
 
 	i = 0;
 	if (!(new = ft_memalloc(sizeof(t_process))))
-		return ;
+		exit(0);
 	cpy_process(process, new);
 	while (i < 16)
 	{

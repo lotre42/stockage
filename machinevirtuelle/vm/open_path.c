@@ -54,13 +54,13 @@ unsigned int x)
 	t_header	*head;
 
 	if ((fd = open_check(pathplayer)) == -1)
-		return (0);
+		exit(0);
 	size = lseek(fd, (size_t)0, SEEK_END);
 	lseek(fd, (size_t)0, SEEK_SET);
 	if (!(buf = ft_memalloc((size))) || (!checksize(size)))
 	{
 		close(fd);
-		return (0);
+		exit(0);
 	}
 	res = read(fd, buf, size);
 	head = (void *)buf;

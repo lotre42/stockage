@@ -32,10 +32,15 @@ void			ft_freedata(t_data **data)
 	t_data *tmp;
 
 	tmp = *data;
-	free(tmp->numberplayer);
-	free(tmp->ram);
-	free_play(&tmp->players);
-	// free_process(&tmp->process);
+	if (tmp->numberplayer)
+		free(tmp->numberplayer);
+	if (tmp->ram)
+		free(tmp->ram);
+	if (tmp->players)
+		free_play(&tmp->players);
+	if (tmp->process)
+		free_process(&tmp->process);
 	free(tmp->process);
-	free(tmp);
+	if (tmp)
+		free(tmp);
 }

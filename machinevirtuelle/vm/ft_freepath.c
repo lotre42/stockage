@@ -26,3 +26,11 @@ void	ft_freepath(t_path **path)
 		*path = tmp;
 	}
 }
+
+int		ft_startandfree(t_path **path, t_data **data)
+{
+	recovery_info(*path, *data);
+	ft_freepath(path);
+	ft_freedata(data);
+	return (0);
+}
