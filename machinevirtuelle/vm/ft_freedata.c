@@ -28,7 +28,7 @@ int				free_process(t_process **process)
 	return (1);
 }
 
-void		free_play(t_player **players)
+static void		free_play(t_player **players)
 {
 	t_player *tmp;
 

@@ -6,67 +6,40 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/26 12:55:55 by kahantar          #+#    #+#             */
-/*   Updated: 2017/06/26 13:24:06 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/06/30 04:00:50 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/vm.h"
 
-static void		cpy_process(t_process *process, t_process *new)
+static t_process	*check_dead(t_process *l)
 {
-	new->carry = process->carry;
-	new->nbplayer = process->nbplayer;
-	new->pc = process->pc;
-	new->next = NULL;
-	new->registre = init_tab(16);
-	new->last = process->last;
-}
-
-static void		create_process(t_process **cpy, t_process *process)
-{
-	t_process	*tmp;
-	t_process	*new;
-	int			i;
-
-	i = 0;
-	if (!(new = ft_memalloc(sizeof(t_process))))
-		exit(0);
-	cpy_process(process, new);
-	while (i < 16)
-	{
-		new->registre[i] = process->registre[i];
-		i++;
-	}
-	tmp = *cpy;
-	if (!tmp)
-		*cpy = new;
-	else
-	{
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = new;
-	}
-}
-
-static void		check_dead(t_process **process)
-{
-	t_process *cpy;
+	t_process *first;
 	t_process *tmp;
 
-	cpy = NULL;
-	tmp = *process;
+	while (l->live == 0)
+		l = l->next;
+	if (l)
+		first = l;
+	else
+		return (NULL);
+	tmp = l->next;
 	while (tmp)
 	{
-		if (tmp->live != 0)
-			create_process(&cpy, tmp);
+		if (tmp->live == 0)
+		{
+			l->next = l->next->next;
+			free(tmp);
+			tmp = l->next;
+			continue ;
+		}
 		tmp = tmp->next;
+		l = l->next;
 	}
-	tmp = *process;
-	free_process(process);
-	tmp = cpy;
+	return (first);
 }
 
-static int		zero_process(t_process *process)
+static int			zero_process(t_process *process)
 {
 	int			i;
 	t_process	*tmp;
@@ -87,7 +60,7 @@ static int		zero_process(t_process *process)
 		return (1);
 }
 
-int				check_live_dead(t_process **process)
+int					check_live_dead(t_process **process)
 {
 	int			i;
 	int			j;
@@ -101,7 +74,7 @@ int				check_live_dead(t_process **process)
 		i++;
 		tmp = tmp->next;
 	}
-	check_dead(process);
+	*process = check_dead(*process);
 	tmp = *process;
 	while (tmp)
 	{

@@ -47,6 +47,7 @@ void		xor(t_process *process, unsigned char *ram)
 		return ;
 	}
 	val = load_value(process, ram, tabtype, tabvalue);
+	pluspc(tabtype, process);
 	if ((val[0] && !val[1]) || (!val[0] && val[1]))
 		process->registre[tabvalue[2] - 1] = 1;
 	else

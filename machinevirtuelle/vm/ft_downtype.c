@@ -12,7 +12,7 @@
 
 #include "../includes/vm.h"
 
-static unsigned int	*ft_numberofparam(int ocp)
+static unsigned int	*ft_numberofparam(char ocp)
 {
 	unsigned int *tabparam;
 

@@ -12,14 +12,6 @@
 
 #include "../../includes/vm.h"
 
-static void	free_tab(unsigned int *tabtype, unsigned int *tabvalue)
-{
-	if (tabtype)
-		free(tabtype);
-	if (tabvalue)
-		free(tabvalue);
-}
-
 void		st_rev(unsigned int *tabvalue,
 t_process *process, unsigned char *ram)
 {
