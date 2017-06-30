@@ -12,7 +12,7 @@
 
 #include "../includes/vm.h"
 
-int		list_len(t_path *path)
+int				list_len(t_path *path)
 {
 	int i;
 
@@ -25,7 +25,19 @@ int		list_len(t_path *path)
 	return (i);
 }
 
-int		recovery_info(t_path *path, t_data *data)
+static void		display_win(t_player *player)
+{
+	if (player->nbplayer)
+		{
+			ft_putstr("le joueur ");
+			ft_putnbr(player->nbplayer);
+			ft_putstr("(");
+			ft_putstr(player->header->prog_name);
+			ft_putstr(") a gagne\n");
+		}
+}
+
+int				recovery_info(t_path *path, t_data *data)
 {
 	t_path		*tmp;
 	t_player	*players;
@@ -45,6 +57,9 @@ int		recovery_info(t_path *path, t_data *data)
 	data->process = create_list_process(data->players);
 	if (!(data->ram = create_ram(data->players, list_len(path), data->process)))
 		return (0);
-	core(data);
+	if (list_len(path) > 1)
+		core(data);
+	else if (list_len(path) == 1)
+		display_win(data->players);
 	return (0);
 }
