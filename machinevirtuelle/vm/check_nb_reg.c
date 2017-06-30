@@ -28,22 +28,6 @@ void			cpyint(unsigned char *ram, unsigned char *src, int pc)
 	ram[mask_pc(pc, 3)] = src[3];
 }
 
-int				free_process(t_process **process)
-{
-	t_process *tmp;
-
-	tmp = (*process);
-	while (tmp)
-	{
-		if ((*process)->registre)
-			free((*process)->registre);
-		tmp = (*process)->next;
-		free(*process);
-		*process = tmp;
-	}
-	return (1);
-}
-
 unsigned int	*init_number_player(int nb, t_path *path)
 {
 	unsigned int	*ret;

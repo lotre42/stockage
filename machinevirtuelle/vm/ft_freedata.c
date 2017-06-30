@@ -12,7 +12,23 @@
 
 #include "../includes/vm.h"
 
-static void		free_play(t_player **players)
+int				free_process(t_process **process)
+{
+	t_process *tmp;
+
+	tmp = (*process);
+	while (tmp)
+	{
+		if ((*process)->registre)
+			free((*process)->registre);
+		tmp = (*process)->next;
+		free(*process);
+		*process = tmp;
+	}
+	return (1);
+}
+
+void		free_play(t_player **players)
 {
 	t_player *tmp;
 

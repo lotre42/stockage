@@ -122,5 +122,6 @@ unsigned int			*load_value(t_process *process, unsigned char *ram,
 						unsigned int *type, unsigned int *val);
 void					and(t_process *process, unsigned char *ram);
 int						check_live_dead(t_process **process);
+void		free_play(t_player **players);
 
 #endif

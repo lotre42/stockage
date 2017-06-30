@@ -12,11 +12,8 @@
 
 #include "../includes/vm.h"
 
-static void		check_winner(t_process *process, t_live *live, t_player *player)
+static void		check_winner(t_live *live, t_player *player)
 {
-	t_process	*tmp;
-
-	tmp = process;
 	while (player)
 	{
 		if (player->nbplayer == live->lastlive)
@@ -86,6 +83,6 @@ int				core(t_data *data)
 			cycle = 0;
 		}
 	}
-	check_winner(data->process, live, data->players);
+	check_winner(live, data->players);
 	return (0);
 }
